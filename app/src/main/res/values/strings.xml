@@ -3,4 +3,5 @@
     <string name="bottommenu_home">Home</string>
     <string name="bottommenu_search">Search</string>
     <string name="bottommenu_account">Account</string>
+    <string name="api_base_url">https://tienda.mercadona.es/api/</string>
 </resources>
