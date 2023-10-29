@@ -427,7 +427,7 @@ public class Product {
     private Boolean isVariableWeight;
     @SerializedName("price_instructions")
     @Expose
-    private PriceInstructions priceInstructions;
+    private PriceInstuction priceInstructions;
     @SerializedName("unavailable_weekdays")
     @Expose
     private List<Object> unavailableWeekdays;
@@ -615,11 +615,11 @@ public class Product {
         this.isVariableWeight = isVariableWeight;
     }
 
-    public PriceInstructions getPriceInstructions() {
+    public PriceInstuction getPriceInstructions() {
         return priceInstructions;
     }
 
-    public void setPriceInstructions(PriceInstructions priceInstructions) {
+    public void setPriceInstructions(PriceInstuction priceInstructions) {
         this.priceInstructions = priceInstructions;
     }
 
