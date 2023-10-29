@@ -2,6 +2,7 @@ package com.bdmariobd.mercadonafc.api;
 
 import com.bdmariobd.mercadonafc.models.Categories;
 import com.bdmariobd.mercadonafc.models.CategoryProducts;
+import com.bdmariobd.mercadonafc.models.PriceDrops;
 import com.bdmariobd.mercadonafc.models.Product;
 
 import retrofit2.Call;
@@ -18,5 +19,8 @@ public interface MercadonaAPIService {
 
     @GET("categories/{category_id}")
     Call<CategoryProducts> getCategoryById(@Path("category_id") String categoryId);
+
+    @GET("home/price-drops/")
+    Call<PriceDrops> getPriceDrops();
 
 }

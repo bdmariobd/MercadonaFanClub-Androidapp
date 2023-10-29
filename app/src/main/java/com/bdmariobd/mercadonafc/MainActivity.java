@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.fragments.Account.AccountFragment;
-import com.bdmariobd.mercadonafc.fragments.HomeFragment;
 import com.bdmariobd.mercadonafc.fragments.SearchFragment;
+import com.bdmariobd.mercadonafc.fragments.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

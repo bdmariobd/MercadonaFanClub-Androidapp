@@ -15,6 +15,7 @@ import com.bdmariobd.mercadonafc.R;
 public class LoggedInFragment extends Fragment {
 
     Button btnCloseSession;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
