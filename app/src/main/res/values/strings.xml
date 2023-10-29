@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Mercadona Fan Club</string>
+    <string name="bottommenu_home">Home</string>
+    <string name="bottommenu_search">Search</string>
+    <string name="bottommenu_account">Account</string>
 </resources>
