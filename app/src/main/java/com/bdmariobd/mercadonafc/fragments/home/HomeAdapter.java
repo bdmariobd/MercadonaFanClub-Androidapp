@@ -63,7 +63,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
 
         public void bind(Product product) {
             productName.setText(product.getDisplayName());
-            productPrice.setText(product.getPriceInstructions().getUnitPrice());
+            productPrice.setText(product.getPriceInstructions().getUnitPrice() + product.getPriceInstructions().getPreviousUnitPrice());
             String description = "";
             description += product.getPackaging();
             description += " ";
@@ -71,8 +71,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
             description += " ";
             description += product.getPriceInstructions().getUnitName();
             productDescription.setText(description);
-            productRatingInfo.setText("4,9 (32 reviews)");
-            productRating.setRating(5);
+            productRatingInfo.setText("3,4 (32 reviews)");
+            productRating.setRating(3.4F);
             Picasso.get()
                     .load(product.getThumbnail())
                     .placeholder(R.drawable.baseline_preview_24)

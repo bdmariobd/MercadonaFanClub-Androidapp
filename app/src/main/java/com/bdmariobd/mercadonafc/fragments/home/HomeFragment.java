@@ -13,6 +13,7 @@ import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
 import com.bdmariobd.mercadonafc.models.PriceDrops;
 import com.bdmariobd.mercadonafc.models.Product;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,34 @@ public class HomeFragment extends Fragment {
     private List<Product> products;
     private MercadonaAPIService mercadonaAPIService;
     private HomeAdapter homeAdapter;
+    private TabLayout tabLayout;
+
+    private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            switch(tab.getPosition()) {
+                case 0:
+
+                    break;
+                case 1:
+                    getPriceDrops();
+                    break;
+                case 2:
+                    getNewProducts();
+                    break;
+            }
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +69,28 @@ public class HomeFragment extends Fragment {
         mercadonaAPIService = retrofit.create(MercadonaAPIService.class);
         Call<PriceDrops> call = mercadonaAPIService.getPriceDrops();
         homeAdapter = new HomeAdapter(new ArrayList<>());
+        getPriceDrops();
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        tabLayout = getView().findViewById(R.id.hometab_tab);
+        tabLayout.selectTab(tabLayout.getTabAt(1));
+        tabLayout.addOnTabSelectedListener(onTabSelectedListener);
+        RecyclerView recyclerView = getView().findViewById(R.id.home_rv);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setAdapter(homeAdapter);
+    }
+
+    private void getPriceDrops() {
+        Call<PriceDrops> call = mercadonaAPIService.getPriceDrops();
         call.enqueue(new Callback<PriceDrops>() {
             @Override
             public void onResponse(Call<PriceDrops> call, Response<PriceDrops> response) {
@@ -58,17 +108,22 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    private void getNewProducts() {
+        Call<PriceDrops> call = mercadonaAPIService.getNewArrivals();
+        call.enqueue(new Callback<PriceDrops>() {
+            @Override
+            public void onResponse(Call<PriceDrops> call, Response<PriceDrops> response) {
+                if (response.isSuccessful()) {
+                    PriceDrops priceDrops = response.body();
+                    products = priceDrops.getProducts();
+                    homeAdapter.setProducts(products);
+                }
+            }
+            @Override
+            public void onFailure(Call<PriceDrops> call, Throwable t) {
+
+            }
+        });
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = getView().findViewById(R.id.home_rv);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerView.setAdapter(homeAdapter);
-    }
 }

@@ -23,4 +23,7 @@ public interface MercadonaAPIService {
     @GET("home/price-drops/")
     Call<PriceDrops> getPriceDrops();
 
+    @GET("home/new-arrivals/?&wh=mad1")
+    Call<PriceDrops> getNewArrivals();
+
 }

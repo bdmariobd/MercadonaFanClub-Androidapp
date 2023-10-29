@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Mercadona Fan Club</string>
-    <string name="bottommenu_home">Home</string>
-    <string name="bottommenu_search">Search</string>
-    <string name="bottommenu_account">Account</string>
+    <string name="bottommenu_home">Inicio</string>
+    <string name="bottommenu_search">Buscar</string>
+    <string name="bottommenu_account">Cuenta</string>
     <string name="api_base_url">https://tienda.mercadona.es/api/</string>
     <string name="user_not_existing">Invitado</string>
     <string name="why_should_create_account">Para poder aportar al Club de Fans de Mercadona, deberás crearte una cuenta. ¡Es muy fácil!</string>
     <string name="indentify">Identifícate</string>
     <string name="close_session">Cerrar sesión</string>
-    <string name="hometab_all">Productos</string>
+    <string name="hometab_all">En tendencia</string>
     <string name="hometab_priceDrop">Bajadas de precio</string>
     <string name="hometab_newArrivals">Novedades</string>
 </resources>
