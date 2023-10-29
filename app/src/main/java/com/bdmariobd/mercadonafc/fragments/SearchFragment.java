@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
+import com.bdmariobd.mercadonafc.models.Categories;
+import com.bdmariobd.mercadonafc.models.CategoryProducts;
 import com.bdmariobd.mercadonafc.models.Product;
 
 import retrofit2.Call;
@@ -30,8 +32,6 @@ public class SearchFragment extends Fragment {
                 .build();
 
         apiService = retrofit.create(MercadonaAPIService.class);
-        getProductInfo("47818");
-
     }
 
     @Override
@@ -60,5 +60,45 @@ public class SearchFragment extends Fragment {
         });
 
 
+    }
+
+    public void getCategory(String categoryId) {
+        Call<Categories> call_async = apiService.getCategories();
+        call_async.enqueue(new Callback<Categories>() {
+            @Override
+            public void onResponse(Call<Categories> call, Response<Categories> response) {
+                if (response.isSuccessful()) {
+                    Categories product = response.body();
+                    Log.i("MiW", "onResponse => " + product);
+                } else {
+                    Log.e("MiW", "onResponse => " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Categories> call, Throwable t) {
+                Log.i("MiW", "onFailure => " + t.getMessage());
+            }
+        });
+    }
+
+    public void getCategoryById(String categoryId) {
+        Call<CategoryProducts> call_async = apiService.getCategoryById(categoryId);
+        call_async.enqueue(new Callback<CategoryProducts>() {
+            @Override
+            public void onResponse(Call<CategoryProducts> call, Response<CategoryProducts> response) {
+                if (response.isSuccessful()) {
+                    CategoryProducts product = response.body();
+                    Log.i("MiW", "onResponse => " + product);
+                } else {
+                    Log.e("MiW", "onResponse => " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoryProducts> call, Throwable t) {
+                Log.i("MiW", "onFailure => " + t.getMessage());
+            }
+        });
     }
 }

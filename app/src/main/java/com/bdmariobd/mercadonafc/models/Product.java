@@ -10,13 +10,20 @@ import javax.annotation.processing.Generated;
 
 @Generated("jsonschema2pojo")
 class Badges {
-
     @SerializedName("is_water")
     @Expose
     private Boolean isWater;
     @SerializedName("requires_age_check")
     @Expose
     private Boolean requiresAgeCheck;
+
+    @Override
+    public String toString() {
+        return "Badges{" +
+                "isWater=" + isWater +
+                ", requiresAgeCheck=" + requiresAgeCheck +
+                '}';
+    }
 
     public Boolean getIsWater() {
         return isWater;
@@ -54,6 +61,17 @@ class Category {
     @SerializedName("categories")
     @Expose
     private List<Category__1> categories;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", level=" + level +
+                ", order=" + order +
+                ", categories=" + categories +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -348,6 +366,8 @@ class Details {
 
 @Generated("jsonschema2pojo")
 public class Product {
+
+
     @SerializedName("id")
     @Expose
     private String id;
