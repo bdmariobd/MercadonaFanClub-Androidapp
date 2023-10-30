@@ -1,5 +1,6 @@
 package com.bdmariobd.mercadonafc.fragments.home;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdmariobd.mercadonafc.MainActivity;
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.activities.product_detail.ProductActivity;
 import com.bdmariobd.mercadonafc.models.Product;
+import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,6 +51,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
     }
 
     public static class ProductPreviewViewHolder extends RecyclerView.ViewHolder {
+        MaterialCardView productCard;
         TextView productName, productPrice, productDescription, productRatingInfo;
         RatingBar productRating;
         ImageView productImage;
@@ -59,6 +64,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
             productRatingInfo = itemView.findViewById(R.id.product_preview_ratinginfo);
             productRating = itemView.findViewById(R.id.product_preview_ratingstars);
             productImage = itemView.findViewById(R.id.product_preview_thumb);
+            productCard = itemView.findViewById(R.id.product_preview_card);
         }
 
         public void bind(Product product) {
@@ -78,6 +84,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
                     .placeholder(R.drawable.baseline_preview_24)
                     .error(R.drawable.baseline_broken_image_24)
                     .into(productImage);
+            productCard.setOnClickListener(v -> {
+                Intent myIntent = new Intent(itemView.getContext(), ProductActivity.class);
+                myIntent.putExtra("product_id", product.getId());
+                itemView.getContext().startActivity(myIntent);
+
+            });
         }
     }
 }
