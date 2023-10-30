@@ -31,7 +31,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        productId = intent.getStringExtra("productId");
+        productId = intent.getStringExtra("product_id");
 
         RecyclerView recyclerView = findViewById(R.id.carusel_recicler_view);
         Retrofit retrofit = new Retrofit.Builder()
