@@ -11,4 +11,5 @@
     <string name="hometab_all">En tendencia</string>
     <string name="hometab_priceDrop">Bajadas de precio</string>
     <string name="hometab_newArrivals">Novedades</string>
+    <string name="comment_about_product">Comenta sobre el producto...</string>
 </resources>

@@ -1,11 +1,12 @@
-package com.bdmariobd.mercadonafc;
+package com.bdmariobd.mercadonafc.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.bdmariobd.mercadonafc.fragments.Account.AccountFragment;
+import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.fragments.account.AccountFragment;
 import com.bdmariobd.mercadonafc.fragments.SearchFragment;
 import com.bdmariobd.mercadonafc.fragments.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

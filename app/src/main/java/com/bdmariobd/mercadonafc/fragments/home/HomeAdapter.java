@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdmariobd.mercadonafc.MainActivity;
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.product_detail.ProductActivity;
 import com.bdmariobd.mercadonafc.models.Product;

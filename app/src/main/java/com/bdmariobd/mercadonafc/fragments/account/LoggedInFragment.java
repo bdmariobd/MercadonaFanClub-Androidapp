@@ -1,4 +1,4 @@
-package com.bdmariobd.mercadonafc.fragments.Account;
+package com.bdmariobd.mercadonafc.fragments.account;
 
 import android.app.Application;
 import android.os.Bundle;
