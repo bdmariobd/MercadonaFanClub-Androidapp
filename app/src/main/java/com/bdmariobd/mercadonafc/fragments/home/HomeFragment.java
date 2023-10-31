@@ -30,13 +30,14 @@ public class HomeFragment extends Fragment {
     private MercadonaAPIService mercadonaAPIService;
     private HomeAdapter homeAdapter;
     private TabLayout tabLayout;
+    RecyclerView recyclerView;
 
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             switch(tab.getPosition()) {
                 case 0:
-
+                    getTrendingProducts();
                     break;
                 case 1:
                     getPriceDrops();
@@ -54,7 +55,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onTabReselected(TabLayout.Tab tab) {
-
+            recyclerView.smoothScrollToPosition(0);
         }
     };
 
@@ -65,9 +66,7 @@ public class HomeFragment extends Fragment {
                 .baseUrl(getResources().getString(R.string.api_base_url))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         mercadonaAPIService = retrofit.create(MercadonaAPIService.class);
-        Call<PriceDrops> call = mercadonaAPIService.getPriceDrops();
         homeAdapter = new HomeAdapter(new ArrayList<>());
         getPriceDrops();
     }
@@ -84,9 +83,13 @@ public class HomeFragment extends Fragment {
         tabLayout = getView().findViewById(R.id.hometab_tab);
         tabLayout.selectTab(tabLayout.getTabAt(1));
         tabLayout.addOnTabSelectedListener(onTabSelectedListener);
-        RecyclerView recyclerView = getView().findViewById(R.id.home_rv);
+        recyclerView = getView().findViewById(R.id.home_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(homeAdapter);
+    }
+
+    private void getTrendingProducts() {
+        //TODO: get trending products from firebase
     }
 
     private void getPriceDrops() {
