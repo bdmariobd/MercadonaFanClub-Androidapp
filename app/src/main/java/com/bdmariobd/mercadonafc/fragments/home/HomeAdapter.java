@@ -15,6 +15,7 @@ import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.product_detail.ProductActivity;
 import com.bdmariobd.mercadonafc.models.Product;
 import com.google.android.material.card.MaterialCardView;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -85,9 +86,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
                     .into(productImage);
             productCard.setOnClickListener(v -> {
                 Intent myIntent = new Intent(itemView.getContext(), ProductActivity.class);
-                myIntent.putExtra("product_id", product.getId());
+                myIntent.putExtra("product", new Gson().toJson(product));
                 itemView.getContext().startActivity(myIntent);
-
             });
         }
     }

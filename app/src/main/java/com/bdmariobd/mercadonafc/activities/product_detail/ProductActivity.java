@@ -10,6 +10,7 @@ import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
 import com.bdmariobd.mercadonafc.models.Photo;
 import com.bdmariobd.mercadonafc.models.Product;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductActivity extends AppCompatActivity {
     MercadonaAPIService service;
 
-    String productId;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class ProductActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        productId = intent.getStringExtra("product_id");
+        product = new Gson().fromJson(intent.getStringExtra("product"), Product.class);
 
         RecyclerView recyclerView = findViewById(R.id.carusel_recicler_view);
         Retrofit retrofit = new Retrofit.Builder()
@@ -40,7 +41,7 @@ public class ProductActivity extends AppCompatActivity {
                 .build();
 
         service = retrofit.create(MercadonaAPIService.class);
-        Call<Product> call = service.getProductById(productId);
+        Call<Product> call = service.getProductById(product.getId());
 
         call.enqueue(new Callback<Product>() {
                          @Override
