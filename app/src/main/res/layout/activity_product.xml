@@ -16,49 +16,46 @@
         tools:listitem="@layout/carusel_item_image_product" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/productTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/productInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/rate_this_product"
+            android:textAppearance="@style/TextAppearance.Material3.LabelSmall" />
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:numStars="5" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/comment_about_product"
-        android:inputType="textMultiLine" />
+        android:text="@string/reviews"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

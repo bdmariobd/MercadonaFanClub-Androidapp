@@ -12,4 +12,6 @@
     <string name="hometab_priceDrop">Bajadas de precio</string>
     <string name="hometab_newArrivals">Novedades</string>
     <string name="comment_about_product">Comenta sobre el producto...</string>
+    <string name="rate_this_product">Puntúa este producto</string>
+    <string name="reviews">Valoraciones</string>
 </resources>

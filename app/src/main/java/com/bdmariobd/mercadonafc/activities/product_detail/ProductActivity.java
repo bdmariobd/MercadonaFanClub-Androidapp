@@ -2,6 +2,7 @@ package com.bdmariobd.mercadonafc.activities.product_detail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,12 +26,12 @@ public class ProductActivity extends AppCompatActivity {
 
     Product product;
 
+    TextView productTitle, productInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-
-
         Intent intent = getIntent();
         product = new Gson().fromJson(intent.getStringExtra("product"), Product.class);
 
@@ -50,7 +51,13 @@ public class ProductActivity extends AppCompatActivity {
                              List<Photo> arrayList = product.getPhotos();
                              ImageAdapter adapter = new ImageAdapter(ProductActivity.this, arrayList);
                              recyclerView.setAdapter(adapter);
+                             productTitle = findViewById(R.id.productTitle);
+                             productInfo = findViewById(R.id.productInfo);
+                             productTitle.setText(product.getDisplayName());
+                             String info = product.getBrand() + " " + product.getPriceInstructions().getUnitPrice() + "€";
+                             productInfo.setText(info);
                          }
+
                          @Override
                          public void onFailure(Call<Product> call, Throwable t) {
 
