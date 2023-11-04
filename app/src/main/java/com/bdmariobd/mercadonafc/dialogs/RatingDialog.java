@@ -12,8 +12,12 @@ import androidx.fragment.app.DialogFragment;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.product_detail.ProductActivity;
+import com.bdmariobd.mercadonafc.activities.product_detail.Review;
 import com.bdmariobd.mercadonafc.models.Product;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.UUID;
 
 public class RatingDialog extends DialogFragment {
 
@@ -21,6 +25,8 @@ public class RatingDialog extends DialogFragment {
     Float rating;
 
     RatingBar ratingBar;
+
+    TextInputEditText reviewEditText;
 
     public RatingDialog(Product product, Float rating) {
         this.product = product;
@@ -30,17 +36,16 @@ public class RatingDialog extends DialogFragment {
     @NonNull
     @Override
     public AppCompatDialog onCreateDialog(Bundle savedInstanceState) {
-        final ProductActivity main = (ProductActivity) requireActivity();
-        assert main != null;
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(main);
+        final ProductActivity productActivity = (ProductActivity) requireActivity();
+        assert productActivity != null;
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(productActivity);
         builder
                 .setTitle(R.string.rate_this_product)
                 .setMessage(getResources().getString(R.string.tell_us_about) + " " + product.getDisplayName())
                 .setPositiveButton(
                         getString(R.string.rate_this_product),
                         (dialog, which) -> {
-
-
+                            productActivity.sendProductReview(getReview());
                         }
                 )
                 .setNegativeButton(
@@ -63,5 +68,13 @@ public class RatingDialog extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ratingBar = view.findViewById(R.id.ratingBarFragment);
         ratingBar.setRating(rating);
+        reviewEditText = view.findViewById(R.id.ratingDialogText);
+    }
+
+    private Review getReview() {
+        String review = reviewEditText.getText().toString();
+        Float rating = ratingBar.getRating();
+        UUID uuid = UUID.randomUUID();
+        return new Review(review,rating, "PEPE", uuid.toString());
     }
 }

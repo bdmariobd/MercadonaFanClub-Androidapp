@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,14 +20,14 @@
         android:id="@+id/productTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/sample_text_short"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
 
     <TextView
         android:id="@+id/productInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/sample_text_short"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
 
     <LinearLayout
@@ -58,7 +59,9 @@
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ratingsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/rating_item" />
 
 </LinearLayout>

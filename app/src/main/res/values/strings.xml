@@ -16,4 +16,7 @@
     <string name="reviews">Valoraciones</string>
     <string name="your_review">Cuéntanos más detalles...(opcional)</string>
     <string name="tell_us_about">Cuéntanos más sobre</string>
+    <string name="sample_text_short">Pequeño texto de ejemplo</string>
+    <string name="sample_text_long">"Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto Mucho texto "</string>
+    <string name="reviews_db_name">reviews</string>
 </resources>

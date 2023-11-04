@@ -13,12 +13,12 @@ import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.models.Photo;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
     Context context;
     List<Photo> photoList;
+
     public ImageAdapter(Context context, List<Photo> photoList) {
         this.context = context;
         this.photoList = photoList;
@@ -47,6 +47,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.list_item_image);

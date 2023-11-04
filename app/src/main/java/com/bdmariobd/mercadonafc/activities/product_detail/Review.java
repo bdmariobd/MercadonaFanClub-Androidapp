@@ -31,8 +31,6 @@ public class Review {
         return review;
     }
 
-
-
     public void setReview(@Nullable String review) {
         this.review = review;
     }
