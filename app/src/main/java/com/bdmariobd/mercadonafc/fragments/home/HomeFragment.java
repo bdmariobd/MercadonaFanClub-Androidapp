@@ -30,7 +30,6 @@ public class HomeFragment extends Fragment {
     private List<Product> products;
     private MercadonaAPIService mercadonaAPIService;
     private HomeAdapter homeAdapter;
-    private TabLayout tabLayout;
     private final TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -57,6 +56,7 @@ public class HomeFragment extends Fragment {
             recyclerView.smoothScrollToPosition(0);
         }
     };
+    private TabLayout tabLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
