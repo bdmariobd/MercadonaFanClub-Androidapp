@@ -22,7 +22,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
         this.reviewList = new ArrayList<>();
     }
 
-    @androidx.annotation.NonNull
+    @NonNull
     @Override
     public RatingViewHolder onCreateViewHolder(@androidx.annotation.NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rating_item, parent, false);
@@ -30,7 +30,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
     }
 
     @Override
-    public void onBindViewHolder(@androidx.annotation.NonNull RatingViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RatingViewHolder holder, int position) {
         holder.bind(reviewList.get(position));
     }
 
@@ -57,7 +57,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             user = itemView.findViewById(R.id.rating_item_ratingUser);
             date = itemView.findViewById(R.id.rating_item_ratingText);
             review = itemView.findViewById(R.id.rating_item_review);
-            userImage = itemView.findViewById(R.id.rating_item_rating);
+            userImage = itemView.findViewById(R.id.rating_item_ratingImage);
             ratingBar = itemView.findViewById(R.id.ratingBar);
         }
 
@@ -65,7 +65,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             this.user.setText(review.getAuthor());
             this.date.setText(review.getDate().toString());
             this.review.setText(review.getReview());
-            this.ratingBar.setRating(review.getRating());
+            // this.ratingBar.setRating(review.getRating());
         }
     }
 }

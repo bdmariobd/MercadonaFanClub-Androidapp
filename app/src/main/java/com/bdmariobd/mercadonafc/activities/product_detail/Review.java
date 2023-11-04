@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Review {
     private String review;
-    private Float rating;
+    private float rating;
     private Date date;
     private String author;
 
@@ -20,10 +20,11 @@ public class Review {
         // Needed for Firebase
     }
 
-    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id) {
+    public Review(@Nullable String review, @NonNull float rating, @NonNull String author, @NonNull String id) {
         this.review = review;
         this.rating = rating;
         this.author = author;
+        this.id = id;
     }
 
     @Nullable
@@ -36,11 +37,11 @@ public class Review {
     }
 
     @NonNull
-    public Float getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(@NonNull Float rating) {
+    public void setRating(@NonNull float rating) {
         this.rating = rating;
     }
 
@@ -63,12 +64,21 @@ public class Review {
         this.author = author;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Review review1 = (Review) o;
-        return Objects.equals(review, review1.review) && rating.equals(review1.rating) && date.equals(review1.date) && author.equals(review1.author) && id.equals(review1.id);
+        return Float.compare(review1.rating, rating) == 0 && Objects.equals(review, review1.review) && date.equals(review1.date) && author.equals(review1.author) && id.equals(review1.id);
     }
 
     @Override

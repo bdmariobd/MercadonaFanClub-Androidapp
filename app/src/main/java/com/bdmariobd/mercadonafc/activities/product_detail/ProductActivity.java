@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.R;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,6 +48,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
 
         carouselRecyclerView = findViewById(R.id.carusel_recicler_view);
         reviewRecyclerView = findViewById(R.id.ratingsRecyclerView);
+        reviewRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         reviewAdapter = new ReviewAdapter();
         reviewRecyclerView.setAdapter(reviewAdapter);
@@ -100,8 +103,10 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
         // TODO LOCK OR UNLOCK RATING
     }
 
-    public void sendProductReview(Review review) {
-        db.collection(getResources().getString(R.string.reviews_db_name)).document(product.getId())
+    public void sendProductReview(String productId, Review review) {
+        db.collection(getResources().getString(R.string.reviews_db_name)).document(productId)
+                .collection(getResources().getString(R.string.singleEntrance_db_name))
+                .document(review.getId())
                 .set(review)
                 .addOnSuccessListener(documentReference -> {
                 })
@@ -111,11 +116,15 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
 
     public void retrieveProductReviews(String productId) {
         db.collection(getResources().getString(R.string.reviews_db_name))
+                .document(productId)
+                .collection(getResources().getString(R.string.singleEntrance_db_name))
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        List<Review> reviews = task.getResult().toObjects(Review.class);
-                        reviewAdapter.setReviewList(reviews);
+                        List<Review> reviewList = task.getResult().toObjects(Review.class);
+                        Collections.reverse(reviewList);
+                        reviewAdapter.setReviewList(reviewList);
+                        Log.d("Listreviews", reviewList.toString());
                     } else {
                         Log.w("TAG", "Error getting documents.", task.getException());
                     }

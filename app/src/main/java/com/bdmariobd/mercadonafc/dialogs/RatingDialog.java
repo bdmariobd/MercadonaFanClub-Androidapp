@@ -45,7 +45,7 @@ public class RatingDialog extends DialogFragment {
                 .setPositiveButton(
                         getString(R.string.rate_this_product),
                         (dialog, which) -> {
-                            productActivity.sendProductReview(getReview());
+                            productActivity.sendProductReview(product.getId(), getReview());
                         }
                 )
                 .setNegativeButton(
@@ -75,6 +75,7 @@ public class RatingDialog extends DialogFragment {
         String review = reviewEditText.getText().toString();
         Float rating = ratingBar.getRating();
         UUID uuid = UUID.randomUUID();
-        return new Review(review, rating, "PEPE", uuid.toString());
+        Review reviewObj = new Review(review, rating, "PEPE", uuid.toString());
+        return reviewObj;
     }
 }
