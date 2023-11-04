@@ -24,6 +24,6 @@ public class MercadonaCFApplication extends android.app.Application {
     }
 
     public String getName() {
-        return this.isAutenticated()? mAuth.getCurrentUser().getDisplayName() : getResources().getString(R.string.user_not_existing);
+        return this.isAutenticated() ? mAuth.getCurrentUser().getDisplayName() : getResources().getString(R.string.user_not_existing);
     }
 }

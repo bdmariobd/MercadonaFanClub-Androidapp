@@ -75,6 +75,6 @@ public class RatingDialog extends DialogFragment {
         String review = reviewEditText.getText().toString();
         Float rating = ratingBar.getRating();
         UUID uuid = UUID.randomUUID();
-        return new Review(review,rating, "PEPE", uuid.toString());
+        return new Review(review, rating, "PEPE", uuid.toString());
     }
 }

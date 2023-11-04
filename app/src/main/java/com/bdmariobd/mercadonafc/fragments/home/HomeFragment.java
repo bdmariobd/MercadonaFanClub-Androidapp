@@ -26,16 +26,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
 
+    RecyclerView recyclerView;
     private List<Product> products;
     private MercadonaAPIService mercadonaAPIService;
     private HomeAdapter homeAdapter;
     private TabLayout tabLayout;
-    RecyclerView recyclerView;
-
-    private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
+    private final TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            switch(tab.getPosition()) {
+            switch (tab.getPosition()) {
                 case 0:
                     getTrendingProducts();
                     break;
@@ -122,6 +121,7 @@ public class HomeFragment extends Fragment {
                     homeAdapter.setProducts(products);
                 }
             }
+
             @Override
             public void onFailure(Call<PriceDrops> call, Throwable t) {
 

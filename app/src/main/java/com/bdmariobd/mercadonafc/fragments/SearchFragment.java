@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
@@ -29,9 +28,8 @@ public class SearchFragment extends Fragment {
             .build();
 
     GmsBarcodeScanner scanner;
-    private MercadonaAPIService apiService;
-
     Button btnScanBarcode;
+    private MercadonaAPIService apiService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
