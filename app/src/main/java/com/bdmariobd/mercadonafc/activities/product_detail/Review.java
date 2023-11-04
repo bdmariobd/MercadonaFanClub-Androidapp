@@ -1,0 +1,91 @@
+package com.bdmariobd.mercadonafc.activities.product_detail;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
+import java.util.Objects;
+
+public class Review {
+    private String review;
+    private Float rating;
+    private Date date;
+    private String author;
+
+    private String id;
+
+    public Review() {
+        // Needed for Firebase
+    }
+
+    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id) {
+        this.review = review;
+        this.rating = rating;
+        this.author = author;
+    }
+
+    @Nullable
+    public String getReview() {
+        return review;
+    }
+
+
+
+    public void setReview(@Nullable String review) {
+        this.review = review;
+    }
+
+    @NonNull
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(@NonNull Float rating) {
+        this.rating = rating;
+    }
+
+    @ServerTimestamp
+    @NonNull
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(@NonNull Date date) {
+        this.date = date;
+    }
+
+    @NonNull
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(@NonNull String author) {
+        this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review1 = (Review) o;
+        return Objects.equals(review, review1.review) && rating.equals(review1.rating) && date.equals(review1.date) && author.equals(review1.author) && id.equals(review1.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(review, rating, date, author, id);
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "review='" + review + '\'' +
+                ", rating=" + rating +
+                ", date=" + date +
+                ", author='" + author + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+}

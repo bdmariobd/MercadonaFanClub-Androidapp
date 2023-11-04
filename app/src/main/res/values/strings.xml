@@ -14,4 +14,6 @@
     <string name="comment_about_product">Comenta sobre el producto...</string>
     <string name="rate_this_product">Puntúa este producto</string>
     <string name="reviews">Valoraciones</string>
+    <string name="your_review">Cuéntanos más detalles...(opcional)</string>
+    <string name="tell_us_about">Cuéntanos más sobre</string>
 </resources>

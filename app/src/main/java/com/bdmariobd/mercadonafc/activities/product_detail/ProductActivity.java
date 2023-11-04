@@ -2,13 +2,17 @@ package com.bdmariobd.mercadonafc.activities.product_detail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
+import com.bdmariobd.mercadonafc.dialogs.RatingDialog;
 import com.bdmariobd.mercadonafc.models.Photo;
 import com.bdmariobd.mercadonafc.models.Product;
 import com.google.gson.Gson;
@@ -28,6 +32,8 @@ public class ProductActivity extends AppCompatActivity {
 
     TextView productTitle, productInfo;
 
+    RatingBar ratingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,12 @@ public class ProductActivity extends AppCompatActivity {
         product = new Gson().fromJson(intent.getStringExtra("product"), Product.class);
 
         RecyclerView recyclerView = findViewById(R.id.carusel_recicler_view);
+
+        ratingBar = findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
+            this.showDialog(product, rating);
+        });
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getResources().getString(R.string.api_base_url))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -47,7 +59,7 @@ public class ProductActivity extends AppCompatActivity {
         call.enqueue(new Callback<Product>() {
                          @Override
                          public void onResponse(Call<Product> call, Response<Product> response) {
-                             Product product = response.body();
+                             product = response.body();
                              List<Photo> arrayList = product.getPhotos();
                              ImageAdapter adapter = new ImageAdapter(ProductActivity.this, arrayList);
                              recyclerView.setAdapter(adapter);
@@ -65,4 +77,11 @@ public class ProductActivity extends AppCompatActivity {
                      }
         );
     }
+
+    public void showDialog(Product product, Float rating) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        RatingDialog newFragment = new RatingDialog(product, rating);
+        newFragment.show(fragmentManager, "rating");
+    }
+
 }
