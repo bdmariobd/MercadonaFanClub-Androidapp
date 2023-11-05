@@ -32,9 +32,9 @@
 
         <RatingBar
             android:id="@+id/rating_item_rating"
-            style="@android:style/Widget.Material.RatingBar.Indicator"
+            style="@android:style/Widget.Material.RatingBar.Small"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:isIndicator="true" />
 
