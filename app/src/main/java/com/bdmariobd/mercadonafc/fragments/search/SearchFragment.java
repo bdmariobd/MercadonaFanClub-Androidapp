@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.activities.MainActivity;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
+import com.bdmariobd.mercadonafc.fragments.home.HomeFragment;
 import com.bdmariobd.mercadonafc.models.Categories;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner;
@@ -46,7 +48,6 @@ public class SearchFragment extends Fragment {
     List<String> expandableListTitle;
     HashMap<String, List<Pair<String, String>>> expandableListDetail; // Pair<product name, product id>
     private MercadonaAPIService apiService;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +104,9 @@ public class SearchFragment extends Fragment {
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             // TODO open products list
-
+            MainActivity mainActivity = (MainActivity) this.requireActivity();
+            String categoryId = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition).second;
+            mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProductsByCategoryFragment(categoryId)).commit();
             return false;
         });
     }
