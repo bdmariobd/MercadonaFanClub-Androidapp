@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/your_review"
         app:counterEnabled="true"
-        app:counterMaxLength="500">
+        app:counterMaxLength="500"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ratingDialogText"

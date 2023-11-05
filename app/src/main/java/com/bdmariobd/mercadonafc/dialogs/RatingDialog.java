@@ -1,5 +1,6 @@
 package com.bdmariobd.mercadonafc.dialogs;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,15 +8,18 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.bdmariobd.mercadonafc.MercadonaCFApplication;
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.product_detail.ProductActivity;
 import com.bdmariobd.mercadonafc.activities.product_detail.Review;
 import com.bdmariobd.mercadonafc.models.Product;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.UUID;
 
@@ -26,7 +30,9 @@ public class RatingDialog extends DialogFragment {
 
     RatingBar ratingBar;
 
-    TextInputEditText reviewEditText;
+    TextInputLayout reviewEditText;
+
+    MercadonaCFApplication application;
 
     public RatingDialog(Product product, Float rating) {
         this.product = product;
@@ -37,7 +43,11 @@ public class RatingDialog extends DialogFragment {
     @Override
     public AppCompatDialog onCreateDialog(Bundle savedInstanceState) {
         final ProductActivity productActivity = (ProductActivity) requireActivity();
+        application = (MercadonaCFApplication) productActivity.getApplication();
         assert productActivity != null;
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View DialogView = inflater.inflate(R.layout.fragment_rating,null);
+        this.onViewCreated(DialogView, savedInstanceState);
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(productActivity);
         builder
                 .setTitle(R.string.rate_this_product)
@@ -53,29 +63,32 @@ public class RatingDialog extends DialogFragment {
                         (dialog, which) -> {
                         }
                 )
-                .setView(R.layout.fragment_rating);
+                .setView(DialogView);
 
-        return builder.create();
+        AppCompatDialog dialog = builder.create();
+        dialog.setOnShowListener(dialog1 -> {
+            if(!application.isAutenticated())
+                ((AlertDialog) dialog1).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        });
+        return dialog;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_rating, container, false);
-    }
-
-    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ratingBar = view.findViewById(R.id.ratingBarFragment);
         ratingBar.setRating(rating);
-        reviewEditText = view.findViewById(R.id.ratingDialogText);
+        reviewEditText = view.findViewById(R.id.ratingDialogTextLayout);
+        if(!application.isAutenticated()) {
+            reviewEditText.setEnabled(false);
+            reviewEditText.setHint(R.string.login_to_review);
+        }
     }
 
     private Review getReview() {
-        String review = reviewEditText.getText().toString();
+        String review = reviewEditText.getEditText().getText().toString();
+        String username = application.getName();
         Float rating = ratingBar.getRating();
         UUID uuid = UUID.randomUUID();
-        Review reviewObj = new Review(review, rating, "PEPE", uuid.toString());
+        Review reviewObj = new Review(review, rating, username, uuid.toString());
         return reviewObj;
     }
 }

@@ -1,4 +1,4 @@
-package com.bdmariobd.mercadonafc.fragments;
+package com.bdmariobd.mercadonafc.fragments.search;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,8 @@ public class SearchFragment extends Fragment {
     Button btnScanBarcode;
     private MercadonaAPIService apiService;
 
+    ExpandableListView expandableListView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,7 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btnScanBarcode = view.findViewById(R.id.buttonScan);
         btnScanBarcode.setOnClickListener(this::onScanBarcodeClick);
-
+        expandableListView = view.findViewById(R.id.searcg_fragment_list);
     }
 
     public void onScanBarcodeClick(View view) {

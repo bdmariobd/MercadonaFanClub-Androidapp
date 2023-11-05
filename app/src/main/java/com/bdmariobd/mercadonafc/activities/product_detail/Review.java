@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Review {
     private String review;
-    private float rating;
+    private Float rating;
     private Date date;
     private String author;
 
@@ -20,7 +20,7 @@ public class Review {
         // Needed for Firebase
     }
 
-    public Review(@Nullable String review, @NonNull float rating, @NonNull String author, @NonNull String id) {
+    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id) {
         this.review = review;
         this.rating = rating;
         this.author = author;
@@ -37,11 +37,11 @@ public class Review {
     }
 
     @NonNull
-    public float getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(@NonNull float rating) {
+    public void setRating(@NonNull Float rating) {
         this.rating = rating;
     }
 

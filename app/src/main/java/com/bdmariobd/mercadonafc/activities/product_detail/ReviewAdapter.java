@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.utils.DateConverter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,14 +60,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             date = itemView.findViewById(R.id.rating_item_ratingText);
             review = itemView.findViewById(R.id.rating_item_review);
             userImage = itemView.findViewById(R.id.rating_item_ratingImage);
-            ratingBar = itemView.findViewById(R.id.ratingBar);
+            ratingBar = itemView.findViewById(R.id.rating_item_rating);
         }
 
         public void bind(Review review) {
             this.user.setText(review.getAuthor());
-            this.date.setText(review.getDate().toString());
+            this.date.setText(DateConverter.convertToFormat(review.getDate()));
             this.review.setText(review.getReview());
-            // this.ratingBar.setRating(review.getRating());
+            this.ratingBar.setRating(review.getRating());
         }
     }
 }

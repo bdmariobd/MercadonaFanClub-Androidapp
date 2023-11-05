@@ -1,5 +1,8 @@
 package com.bdmariobd.mercadonafc;
 
+import android.net.Uri;
+import android.os.Parcelable;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,5 +28,9 @@ public class MercadonaCFApplication extends android.app.Application {
 
     public String getName() {
         return this.isAutenticated() ? mAuth.getCurrentUser().getDisplayName() : getResources().getString(R.string.user_not_existing);
+    }
+
+    public Uri getPhotoUrl() {
+        return this.isAutenticated() ? mAuth.getCurrentUser().getPhotoUrl() : null;
     }
 }
