@@ -2,6 +2,7 @@ package com.bdmariobd.mercadonafc.fragments.search;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.models.Product;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +18,10 @@ import java.util.List;
 public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private HashMap<String, List<Pair<String,String>>> expandableListDetail; // Pair<product name, product id>
 
     public CategoriesExpandableListAdapter(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+                                       HashMap<String, List<Pair<String,String>>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -28,7 +30,7 @@ public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public Object getChild(int listPosition, int expandedListPosition) {
         return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .get(expandedListPosition);
+                .get(expandedListPosition).first;
     }
 
     @Override
@@ -39,15 +41,15 @@ public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        /*final String expandedListText = (String) getChild(listPosition, expandedListPosition);
+        final String expandedListText = (String) getChild(listPosition, expandedListPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list_item, null);
+            convertView = layoutInflater.inflate(R.layout.search_list_item, null);
         }
         TextView expandedListTextView = (TextView) convertView
                 .findViewById(R.id.expandedListItem);
-        expandedListTextView.setText(expandedListText);*/
+        expandedListTextView.setText(expandedListText);
         return convertView;
     }
 
@@ -75,16 +77,16 @@ public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        /*String listTitle = (String) getGroup(listPosition);
+        String listTitle = (String) getGroup(listPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list_group, null);
+            convertView = layoutInflater.inflate(R.layout.search_list_group, null);
         }
-        // TextView listTitleTextView = (TextView) convertView
+         TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
-        listTitleTextView.setText(listTitle);*/
+        listTitleTextView.setText(listTitle);
         return convertView;
     }
 

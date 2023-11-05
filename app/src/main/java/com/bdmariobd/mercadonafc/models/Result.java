@@ -8,8 +8,7 @@ import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated("jsonschema2pojo")
-class CatalogCategory {
-
+public class Result {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -25,18 +24,22 @@ class CatalogCategory {
     @SerializedName("published")
     @Expose
     private Boolean published;
+    @SerializedName("categories")
+    @Expose
+    private List<Category> categories;
     @SerializedName("is_extended")
     @Expose
     private Boolean isExtended;
 
     @Override
     public String toString() {
-        return "CatalogCategory{" +
+        return "Result{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", order=" + order +
                 ", layout=" + layout +
                 ", published=" + published +
+                ", categories=" + categories +
                 ", isExtended=" + isExtended +
                 '}';
     }
@@ -81,6 +84,14 @@ class CatalogCategory {
         this.published = published;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
     public Boolean getIsExtended() {
         return isExtended;
     }
@@ -90,65 +101,3 @@ class CatalogCategory {
     }
 
 }
-
-@Generated("jsonschema2pojo")
-public class Categories {
-
-
-    @SerializedName("next")
-    @Expose
-    private Object next;
-    @SerializedName("count")
-    @Expose
-    private Integer count;
-    @SerializedName("results")
-    @Expose
-    private List<Result> results;
-    @SerializedName("previous")
-    @Expose
-    private Object previous;
-
-    @Override
-    public String toString() {
-        return "Categories{" +
-                "next=" + next +
-                ", count=" + count +
-                ", results=" + results +
-                ", previous=" + previous +
-                '}';
-    }
-
-    public Object getNext() {
-        return next;
-    }
-
-    public void setNext(Object next) {
-        this.next = next;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public List<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Result> results) {
-        this.results = results;
-    }
-
-    public Object getPrevious() {
-        return previous;
-    }
-
-    public void setPrevious(Object previous) {
-        this.previous = previous;
-    }
-
-}
-
