@@ -9,15 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/rating_item_ratingImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
         <TextView
             android:id="@+id/rating_item_ratingUser"
+            style="@style/TextAppearance.Material3.HeadlineMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,6 +34,7 @@
 
         <TextView
             android:id="@+id/rating_item_ratingText"
+            style="@style/TextAppearance.Material3.LabelSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -49,6 +44,7 @@
 
     <TextView
         android:id="@+id/rating_item_review"
+        style="@style/MaterialAlertDialog.Material3.Body.Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sample_text_long" />

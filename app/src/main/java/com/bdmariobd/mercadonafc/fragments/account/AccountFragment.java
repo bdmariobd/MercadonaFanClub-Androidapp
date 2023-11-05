@@ -12,15 +12,14 @@ import com.bdmariobd.mercadonafc.R;
 
 public class AccountFragment extends Fragment {
 
+    MercadonaCFApplication application;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MercadonaCFApplication application = (MercadonaCFApplication) requireActivity().getApplication();
-        if (!application.isAutenticated()) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment()).commit();
-        } else {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment()).commit();
-        }
+        application = (MercadonaCFApplication) requireActivity().getApplication();
+        setFragmentBasedOnAuth();
+
     }
 
     @Override
@@ -28,4 +27,21 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setFragmentBasedOnAuth();
+    }
+
+    public void setFragmentBasedOnAuth() {
+        MercadonaCFApplication application = (MercadonaCFApplication) requireActivity().getApplication();
+        if (!application.isAutenticated()) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment()).commit();
+        } else {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment()).commit();
+        }
+        String photoUrl = application.getPhotoUrl() != null ? application.getPhotoUrl().toString() : "";
+    }
+
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +16,7 @@ import com.bdmariobd.mercadonafc.R;
 public class LoggedInFragment extends Fragment {
 
     Button btnCloseSession;
+    TextView txtUserName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,12 @@ public class LoggedInFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        MercadonaCFApplication application = (MercadonaCFApplication) requireActivity().getApplication();
         btnCloseSession = view.findViewById(R.id.closeSessionButton);
         btnCloseSession.setOnClickListener(this::onCloseSessionClick);
+        txtUserName = view.findViewById(R.id.tvAccountUsername);
+        txtUserName.setText(application.getName());
     }
 
     private void onCloseSessionClick(View view) {

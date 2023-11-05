@@ -51,7 +51,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
         private final TextView user;
         private final TextView date;
         private final TextView review;
-        private final ImageView userImage;
+        // private final ImageView userImage;
         private final RatingBar ratingBar;
 
         public RatingViewHolder(@NonNull View itemView) {
@@ -59,7 +59,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             user = itemView.findViewById(R.id.rating_item_ratingUser);
             date = itemView.findViewById(R.id.rating_item_ratingText);
             review = itemView.findViewById(R.id.rating_item_review);
-            userImage = itemView.findViewById(R.id.rating_item_ratingImage);
+            // userImage = itemView.findViewById(R.id.rating_item_ratingImage);
             ratingBar = itemView.findViewById(R.id.rating_item_rating);
         }
 

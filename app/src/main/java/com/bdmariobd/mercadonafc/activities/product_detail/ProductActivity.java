@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +49,11 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
 
         carouselRecyclerView = findViewById(R.id.carusel_recicler_view);
         reviewRecyclerView = findViewById(R.id.ratingsRecyclerView);
-        reviewRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        reviewRecyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(reviewRecyclerView.getContext(),
+                layoutManager.getOrientation());
+        reviewRecyclerView.addItemDecoration(dividerItemDecoration);
 
         reviewAdapter = new ReviewAdapter();
         reviewRecyclerView.setAdapter(reviewAdapter);
