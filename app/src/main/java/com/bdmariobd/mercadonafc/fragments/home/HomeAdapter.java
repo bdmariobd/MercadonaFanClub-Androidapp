@@ -1,11 +1,13 @@
 package com.bdmariobd.mercadonafc.fragments.home;
 
 import android.content.Intent;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,8 +54,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
 
     public static class ProductPreviewViewHolder extends RecyclerView.ViewHolder {
         MaterialCardView productCard;
-        TextView productName, productPrice, productDescription, productRatingInfo;
-        RatingBar productRating;
+        TextView productName, productPrice, productDescription;
         ImageView productImage;
 
         public ProductPreviewViewHolder(@NonNull View itemView) {
@@ -61,15 +62,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
             productName = itemView.findViewById(R.id.product_preview_title);
             productPrice = itemView.findViewById(R.id.product_preview_price);
             productDescription = itemView.findViewById(R.id.product_preview_info);
-            productRatingInfo = itemView.findViewById(R.id.product_preview_ratinginfo);
-            productRating = itemView.findViewById(R.id.product_preview_ratingstars);
             productImage = itemView.findViewById(R.id.product_preview_thumb);
             productCard = itemView.findViewById(R.id.product_preview_card);
         }
 
         public void bind(Product product) {
             productName.setText(product.getDisplayName());
-            productPrice.setText(product.getPriceInstructions().getUnitPrice() + product.getPriceInstructions().getPreviousUnitPrice());
+            if (product.getPriceInstructions().getPreviousUnitPrice() != null) {
+                SpannableString spannableString = new SpannableString(product.getPriceInstructions().getPreviousUnitPrice() +
+                        product.getPriceInstructions().getUnitPrice() + "€");
+                spannableString.setSpan(new StrikethroughSpan(), 0, product.getPriceInstructions().getPreviousUnitPrice().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                productPrice.setText(spannableString);
+            } else {
+                productPrice.setText(product.getPriceInstructions().getUnitPrice() + "€");
+            }
             String description = "";
             description += product.getPackaging();
             description += " ";
@@ -77,8 +83,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
             description += " ";
             description += product.getPriceInstructions().getUnitName();
             productDescription.setText(description);
-            productRatingInfo.setText("3,4 (32 reviews)");
-            productRating.setRating(3.4F);
             Picasso.get()
                     .load(product.getThumbnail())
                     .placeholder(R.drawable.baseline_preview_24)

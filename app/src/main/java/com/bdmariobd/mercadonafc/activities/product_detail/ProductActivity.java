@@ -36,7 +36,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
     ReviewAdapter reviewAdapter;
     private MercadonaAPIService service;
     private Product product;
-    private TextView productTitle, productInfo;
+    private TextView productTitle, productInfo, productReviews;
     private RatingBar ratingBar;
     private FirebaseFirestore db;
 
@@ -63,6 +63,9 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
         ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
             this.showDialog(product, rating);
         });
+
+        retrieveProductReviews(product.getId());
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getResources().getString(R.string.api_base_url))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,8 +86,6 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                              productTitle.setText(product.getDisplayName());
                              String info = product.getBrand() + " " + product.getPriceInstructions().getUnitPrice() + "€";
                              productInfo.setText(info);
-
-                             retrieveProductReviews(product.getId());
                          }
 
                          @Override
@@ -94,7 +95,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                      }
         );
 
-        this.db = FirebaseFirestore.getInstance();
+
     }
 
     public void showDialog(Product product, Float rating) {
@@ -120,6 +121,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
     }
 
     public void retrieveProductReviews(String productId) {
+        this.db = FirebaseFirestore.getInstance();
         db.collection(getResources().getString(R.string.reviews_db_name))
                 .document(productId)
                 .collection(getResources().getString(R.string.singleEntrance_db_name))
@@ -127,6 +129,14 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         List<Review> reviewList = task.getResult().toObjects(Review.class);
+                        Integer totalReviews = reviewList.size();
+                        Double averageRating = reviewList.stream().mapToDouble(Review::getRating).sum() / totalReviews;
+                        productReviews = findViewById(R.id.product_reviews_tv);
+                        productReviews.setText(
+                                +averageRating
+                                        + "(" + totalReviews + " "
+                                        + getResources().getString(R.string.totalReviews)
+                                        + ")");
                         Collections.reverse(reviewList);
                         reviewAdapter.setReviewList(reviewList);
                         Log.d("Listreviews", reviewList.toString());
