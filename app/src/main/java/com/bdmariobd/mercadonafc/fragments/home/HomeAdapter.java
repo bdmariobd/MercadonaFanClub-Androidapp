@@ -51,9 +51,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
     }
 
     public static class ProductPreviewViewHolder extends RecyclerView.ViewHolder {
-        MaterialCardView productCard;
-        TextView productName, productPrice, productDescription;
-        ImageView productImage;
+        final MaterialCardView productCard;
+        final TextView productName;
+        final TextView productPrice;
+        final TextView productDescription;
+        final ImageView productImage;
 
         public ProductPreviewViewHolder(@NonNull View itemView) {
             super(itemView);

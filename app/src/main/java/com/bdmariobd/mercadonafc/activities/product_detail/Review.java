@@ -129,6 +129,7 @@ public class Review {
         return Objects.hash(review, rating, date, author, id);
     }
 
+    @androidx.annotation.NonNull
     @Override
     public String toString() {
         return "Review{" +

@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.MainActivity;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
 import com.bdmariobd.mercadonafc.models.Categories;
+import com.bdmariobd.mercadonafc.models.Result;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +56,7 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         expandableListView = view.findViewById(R.id.searcg_fragment_list);
@@ -81,14 +83,14 @@ public class SearchFragment extends Fragment {
         Call<Categories> call = apiService.getCategories();
         call.enqueue(new Callback<Categories>() {
             @Override
-            public void onResponse(Call<Categories> call, Response<Categories> response) {
+            public void onResponse(@NonNull Call<Categories> call, @NonNull Response<Categories> response) {
                 Categories categories = response.body();
                 expandableListTitle = categories.getResults().stream()
-                        .map(result -> result.getName())
+                        .map(Result::getName)
                         .collect(Collectors.toList());
                 expandableListDetail = new HashMap<>(categories.getResults().stream()
                         .collect(Collectors.toMap(
-                                result -> result.getName(),
+                                Result::getName,
                                 result -> result.getCategories().stream()
                                         .map(category -> new Pair<>(category.getName(), category.getId().toString()))
                                         .collect(Collectors.toList())
@@ -98,7 +100,7 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Categories> call, Throwable t) {
+            public void onFailure(@NonNull Call<Categories> call, @NonNull Throwable t) {
 
             }
         });

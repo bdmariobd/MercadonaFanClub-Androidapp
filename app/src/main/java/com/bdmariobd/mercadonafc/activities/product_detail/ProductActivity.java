@@ -66,9 +66,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
 
         ratingBar = findViewById(R.id.ratingBar);
 
-        ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
-            this.showDialog(product, rating);
-        });
+        ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> this.showDialog(product, rating));
 
         retrieveProductReviews(product.getId());
 
@@ -82,15 +80,13 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
 
         ImageAdapter adapter = new ImageAdapter(ProductActivity.this, new ArrayList<>());
         carouselRecyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener((imageView, path) -> {
-                    startActivity(new Intent(ProductActivity.this, FullScreenImageActivity.class)
-                            .putExtra("image", path), ActivityOptions.makeSceneTransitionAnimation(ProductActivity.this, imageView, "image").toBundle());
-                }
+        adapter.setOnItemClickListener((imageView, path) -> startActivity(new Intent(ProductActivity.this, FullScreenImageActivity.class)
+                .putExtra("image", path), ActivityOptions.makeSceneTransitionAnimation(ProductActivity.this, imageView, "image").toBundle())
         );
 
         call.enqueue(new Callback<Product>() {
                          @Override
-                         public void onResponse(Call<Product> call, Response<Product> response) {
+                         public void onResponse(@NonNull Call<Product> call, @NonNull Response<Product> response) {
                              product = response.body();
                              List<Photo> arrayList = product.getPhotos();
                              adapter.setPhotoList(arrayList);
@@ -106,7 +102,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                          }
 
                          @Override
-                         public void onFailure(Call<Product> call, Throwable t) {
+                         public void onFailure(@NonNull Call<Product> call, @NonNull Throwable t) {
 
                          }
                      }
@@ -146,8 +142,8 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         List<Review> reviewList = task.getResult().toObjects(Review.class);
-                        Integer totalReviews = reviewList.size();
-                        Double averageRating = reviewList.stream().mapToDouble(Review::getRating).sum() / totalReviews;
+                        int totalReviews = reviewList.size();
+                        double averageRating = reviewList.stream().mapToDouble(Review::getRating).sum() / totalReviews;
                         productReviews = findViewById(R.id.product_reviews_tv);
                         if (totalReviews == 0) {
                             productReviews.setText(getResources().getString(R.string.no_reviews));

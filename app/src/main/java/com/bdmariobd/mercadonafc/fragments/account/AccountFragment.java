@@ -37,11 +37,10 @@ public class AccountFragment extends Fragment {
     public void setFragmentBasedOnAuth() {
         MercadonaCFApplication application = (MercadonaCFApplication) requireActivity().getApplication();
         if (!application.isAutenticated()) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment()).commit();
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment()).commit();
         } else {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment(this)).commit();
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment(this)).commit();
         }
-        String photoUrl = application.getPhotoUrl() != null ? application.getPhotoUrl().toString() : "";
     }
 
 }

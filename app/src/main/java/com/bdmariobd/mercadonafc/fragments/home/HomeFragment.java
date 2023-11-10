@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,7 +75,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tabLayout = getView().findViewById(R.id.hometab_tab);
         tabLayout.selectTab(tabLayout.getTabAt(0));
@@ -85,15 +86,11 @@ public class HomeFragment extends Fragment {
         getPriceDrops();
     }
 
-    private void getTrendingProducts() {
-        //TODO: get trending products from firebase
-    }
-
     private void getPriceDrops() {
         Call<PriceDrops> call = mercadonaAPIService.getPriceDrops();
         call.enqueue(new Callback<PriceDrops>() {
             @Override
-            public void onResponse(Call<PriceDrops> call, Response<PriceDrops> response) {
+            public void onResponse(@NonNull Call<PriceDrops> call, @NonNull Response<PriceDrops> response) {
                 if (response.isSuccessful()) {
                     PriceDrops priceDrops = response.body();
                     products = priceDrops.getProducts();
@@ -102,7 +99,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<PriceDrops> call, Throwable t) {
+            public void onFailure(@NonNull Call<PriceDrops> call, @NonNull Throwable t) {
 
             }
         });
@@ -112,7 +109,7 @@ public class HomeFragment extends Fragment {
         Call<PriceDrops> call = mercadonaAPIService.getNewArrivals();
         call.enqueue(new Callback<PriceDrops>() {
             @Override
-            public void onResponse(Call<PriceDrops> call, Response<PriceDrops> response) {
+            public void onResponse(@NonNull Call<PriceDrops> call, @NonNull Response<PriceDrops> response) {
                 if (response.isSuccessful()) {
                     PriceDrops priceDrops = response.body();
                     products = priceDrops.getProducts();
@@ -121,7 +118,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<PriceDrops> call, Throwable t) {
+            public void onFailure(@NonNull Call<PriceDrops> call, @NonNull Throwable t) {
 
             }
         });

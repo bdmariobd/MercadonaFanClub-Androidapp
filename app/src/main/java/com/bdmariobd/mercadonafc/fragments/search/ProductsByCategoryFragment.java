@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
 import com.bdmariobd.mercadonafc.fragments.home.HomeAdapter;
+import com.bdmariobd.mercadonafc.models.CategoryInternal;
 import com.bdmariobd.mercadonafc.models.CategoryProducts;
 import com.bdmariobd.mercadonafc.models.Product;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +58,7 @@ public class ProductsByCategoryFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.rvSearchListProducts);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -66,18 +69,18 @@ public class ProductsByCategoryFragment extends Fragment {
         Call<CategoryProducts> call = mercadonaAPIService.getCategoryById(categoryId);
         call.enqueue(new Callback<CategoryProducts>() {
             @Override
-            public void onResponse(Call<CategoryProducts> call, Response<CategoryProducts> response) {
+            public void onResponse(@NonNull Call<CategoryProducts> call, @NonNull Response<CategoryProducts> response) {
                 if (response.isSuccessful()) {
                     CategoryProducts categoryProducts = response.body();
                     List<Product> products = categoryProducts.getCategories().stream().map(
-                            categoryInternal -> categoryInternal.getProducts()).flatMap(
-                            products1 -> products1.stream()).collect(Collectors.toList());
+                            CategoryInternal::getProducts).flatMap(
+                            Collection::stream).collect(Collectors.toList());
                     homeAdapter.setProducts(products);
                 }
             }
 
             @Override
-            public void onFailure(Call<CategoryProducts> call, Throwable t) {
+            public void onFailure(@NonNull Call<CategoryProducts> call, @NonNull Throwable t) {
 
             }
         });

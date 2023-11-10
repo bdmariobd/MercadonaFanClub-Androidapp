@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingViewHolder> {
-    List<Review> reviewList;
+    final List<Review> reviewList;
     Boolean isUser = false;
 
     public ReviewAdapter() {

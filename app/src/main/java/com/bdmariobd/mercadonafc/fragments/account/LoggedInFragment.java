@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class LoggedInFragment extends Fragment {
 
-    AccountFragment accountFragment;
+    final AccountFragment accountFragment;
     Button btnCloseSession;
     TextView txtUserName;
     RecyclerView recyclerView;
@@ -46,7 +47,7 @@ public class LoggedInFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MercadonaCFApplication application = (MercadonaCFApplication) requireActivity().getApplication();
         btnCloseSession = view.findViewById(R.id.closeSessionButton);

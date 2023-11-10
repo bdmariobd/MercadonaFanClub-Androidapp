@@ -19,8 +19,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +27,7 @@ public class NotLoggedInFragment extends Fragment {
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
-            result -> onSignInResult(result)
+            this::onSignInResult
     );
     Button btnLogin;
 
@@ -69,9 +67,9 @@ public class NotLoggedInFragment extends Fragment {
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Log.i("NotLoggedInFragment", "User: logged in");
         } else {
-            Log.i("NotLoggedInFragment", "Error: " + response.getError().getErrorCode());
+            Log.i("NotLoggedInFragment", "Error:  " + response.getError().getErrorCode());
         }
     }
 }

@@ -30,8 +30,8 @@ import java.util.UUID;
 
 public class RatingDialog extends DialogFragment {
 
-    Product product;
-    Float rating;
+    final Product product;
+    final Float rating;
 
     RatingBar ratingBar;
 
@@ -39,7 +39,7 @@ public class RatingDialog extends DialogFragment {
 
     MercadonaCFApplication application;
 
-    GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
+    final GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
             .setBarcodeFormats(
                     Barcode.FORMAT_EAN_13
             )
@@ -62,7 +62,6 @@ public class RatingDialog extends DialogFragment {
     public AppCompatDialog onCreateDialog(Bundle savedInstanceState) {
         final ProductActivity productActivity = (ProductActivity) requireActivity();
         application = (MercadonaCFApplication) productActivity.getApplication();
-        assert productActivity != null;
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View DialogView = inflater.inflate(R.layout.fragment_rating, null);
         this.onViewCreated(DialogView, savedInstanceState);
@@ -115,8 +114,7 @@ public class RatingDialog extends DialogFragment {
         String username = application.getName();
         Float rating = ratingBar.getRating();
         UUID uuid = UUID.randomUUID();
-        Review reviewObj = new Review(review, rating, username, uuid.toString(), application.getUserId(), product.getDisplayName(), isVerified);
-        return reviewObj;
+        return new Review(review, rating, username, uuid.toString(), application.getUserId(), product.getDisplayName(), isVerified);
     }
 
     public void onScanBarcodeClick(View view) {
@@ -135,12 +133,8 @@ public class RatingDialog extends DialogFragment {
                             }
                         })
                 .addOnCanceledListener(
-                        () -> {
-                            Log.d("Barcode", "cancelled");
-                        })
+                        () -> Log.d("Barcode", "cancelled"))
                 .addOnFailureListener(
-                        e -> {
-                            Log.d("Barcode", e.getMessage());
-                        });
+                        e -> Log.d("Barcode", e.getMessage()));
     }
 }
