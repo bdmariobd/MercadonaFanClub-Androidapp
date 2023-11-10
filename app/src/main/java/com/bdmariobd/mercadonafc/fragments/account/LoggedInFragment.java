@@ -20,14 +20,13 @@ import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.product_detail.Review;
 import com.bdmariobd.mercadonafc.activities.product_detail.ReviewAdapter;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.List;
 
 public class LoggedInFragment extends Fragment {
 
     final AccountFragment accountFragment;
     Button btnCloseSession;
-    TextView txtUserName;
+    TextView txtUserName , titleReviews;
     RecyclerView recyclerView;
     ReviewAdapter reviewAdapter;
 
@@ -53,6 +52,7 @@ public class LoggedInFragment extends Fragment {
         btnCloseSession = view.findViewById(R.id.closeSessionButton);
         btnCloseSession.setOnClickListener(this::onCloseSessionClick);
         txtUserName = view.findViewById(R.id.tvAccountUsername);
+        titleReviews = view.findViewById(R.id.tv_logged_in_reviews);
         txtUserName.setText(application.getName());
         recyclerView = view.findViewById(R.id.user_profile_reviews);
         reviewAdapter = new ReviewAdapter(true);
@@ -61,7 +61,7 @@ public class LoggedInFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation()));
-        retrieveUserReviews();
+        retrieveUserReviews(view);
     }
 
     private void onCloseSessionClick(View view) {
@@ -70,13 +70,18 @@ public class LoggedInFragment extends Fragment {
         accountFragment.setFragmentBasedOnAuth();
     }
 
-    private void retrieveUserReviews() {
+    private void retrieveUserReviews(View v) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String userId = ((MercadonaCFApplication) requireActivity().getApplication()).getUserId();
         db.collectionGroup(getResources().getString(R.string.singleEntrance_db_name)).whereEqualTo("userId", userId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Review> reviews = task.getResult().toObjects(Review.class);
                 reviewAdapter.setReviewList(reviews);
+                if(reviews.size() == 0) {
+                    titleReviews.setText(v.getResources().getString(R.string.no_reviews));
+                } else {
+                    titleReviews.setText(titleReviews.getText() + " (" + reviews.size() + ")");
+                }
             } else {
                 Log.e("ERRORAccount", task.getException().getMessage());
             }
