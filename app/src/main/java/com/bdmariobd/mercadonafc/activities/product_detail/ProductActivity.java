@@ -2,6 +2,7 @@ package com.bdmariobd.mercadonafc.activities.product_detail;
 
 import static java.lang.Math.round;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,8 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(reviewRecyclerView.getContext(),
                 layoutManager.getOrientation());
         reviewRecyclerView.addItemDecoration(dividerItemDecoration);
+        reviewRecyclerView.setHasFixedSize(false);
+        reviewRecyclerView.setNestedScrollingEnabled(false);
 
         reviewAdapter = new ReviewAdapter();
         reviewRecyclerView.setAdapter(reviewAdapter);
@@ -83,13 +86,18 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                              List<Photo> arrayList = product.getPhotos();
                              ImageAdapter adapter = new ImageAdapter(ProductActivity.this, arrayList);
                              carouselRecyclerView.setAdapter(adapter);
+                             adapter.setOnItemClickListener((imageView, path) -> {
+                                         startActivity(new Intent(ProductActivity.this, FullScreenImageActivity.class)
+                                                 .putExtra("image", path), ActivityOptions.makeSceneTransitionAnimation(ProductActivity.this, imageView, "image").toBundle());
+                                     }
+                             );
                              productTitle = findViewById(R.id.productTitle);
                              productInfo = findViewById(R.id.productInfo);
                              productTitle.setText(product.getDisplayName());
                              if (product.getBrand() == null) {
                                  product.setBrand("");
                              }
-                             String info = product.getBrand()+ " " + product.getPriceInstructions().getUnitPrice() + "€";
+                             String info = product.getBrand() + " " + product.getPriceInstructions().getUnitPrice() + "€";
                              productInfo.setText(info);
                          }
 
@@ -139,10 +147,9 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                         productReviews = findViewById(R.id.product_reviews_tv);
                         if (totalReviews == 0) {
                             productReviews.setText(getResources().getString(R.string.no_reviews));
-                        }
-                        else {
+                        } else {
                             productReviews.setText(
-                                    + round(averageRating * 10.0) / 10.0
+                                    +round(averageRating * 10.0) / 10.0
                                             + "(" + totalReviews + " "
                                             + getResources().getString(R.string.totalReviews)
                                             + ")");

@@ -1,6 +1,7 @@
 package com.bdmariobd.mercadonafc.fragments.home;
 
 import android.content.Intent;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StrikethroughSpan;
@@ -69,10 +70,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
         public void bind(Product product) {
             productName.setText(product.getDisplayName());
             if (product.getPriceInstructions().getPreviousUnitPrice() != null) {
-                SpannableString spannableString = new SpannableString(product.getPriceInstructions().getPreviousUnitPrice() + "€\n"+
-                        product.getPriceInstructions().getUnitPrice() + "€");
-                spannableString.setSpan(new StrikethroughSpan(), 0, product.getPriceInstructions().getPreviousUnitPrice().length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                productPrice.setText(spannableString);
+                String textHTML = "<strike>" + product.getPriceInstructions().getPreviousUnitPrice() + "€</strike><br>" +
+                        product.getPriceInstructions().getUnitPrice() + "€";
+
+                productPrice.setText(Html.fromHtml(textHTML, Html.FROM_HTML_MODE_COMPACT));
             } else {
                 productPrice.setText(product.getPriceInstructions().getUnitPrice() + "€");
             }

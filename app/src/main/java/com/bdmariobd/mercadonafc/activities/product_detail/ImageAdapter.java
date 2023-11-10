@@ -19,6 +19,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     Context context;
     List<Photo> photoList;
 
+    OnItemClickListener onItemClickListener;
+
+
     public ImageAdapter(Context context, List<Photo> photoList) {
         this.context = context;
         this.photoList = photoList;
@@ -38,11 +41,20 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 .placeholder(R.drawable.baseline_preview_24)
                 .error(R.drawable.baseline_broken_image_24)
                 .into(holder.imageView);
+        holder.itemView.setOnClickListener(view -> onItemClickListener.onClick(holder.imageView, photoList.get(position).getRegular()));
     }
 
     @Override
     public int getItemCount() {
         return photoList.size();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onClick(ImageView imageView, String path);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,5 +64,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             super(itemView);
             imageView = itemView.findViewById(R.id.list_item_image);
         }
+
+
     }
 }

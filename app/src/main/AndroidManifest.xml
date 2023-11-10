@@ -8,9 +8,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/mercadonalogocf"
+        android:icon="@drawable/mercadonalogo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/mercadonalogocffilledround"
+        android:roundIcon="@drawable/mercadonalogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.product_detail.ProductActivity"></activity>
+        <activity android:name=".activities.product_detail.FullScreenImageActivity" ></activity>
     </application>
 
 </manifest>
