@@ -29,7 +29,6 @@ public class Review {
     public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName) {
         this.review = review;
         this.rating = rating;
-        this.date = date;
         this.author = author;
         this.userId = userId;
         this.id = id;
@@ -39,7 +38,6 @@ public class Review {
     public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName, @NonNull Boolean isVerified) {
         this.review = review;
         this.rating = rating;
-        this.date = date;
         this.author = author;
         this.userId = userId;
         this.id = id;

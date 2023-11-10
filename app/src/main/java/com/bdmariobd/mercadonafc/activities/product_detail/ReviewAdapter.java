@@ -54,9 +54,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
     }
 
     public static class RatingViewHolder extends RecyclerView.ViewHolder {
-        private final TextView user;
-        private final TextView date;
-        private final TextView review;
+        private final TextView user, date, review, verified;
         // private final ImageView userImage;
         private final RatingBar ratingBar;
 
@@ -67,6 +65,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             review = itemView.findViewById(R.id.rating_item_review);
             // userImage = itemView.findViewById(R.id.rating_item_ratingImage);
             ratingBar = itemView.findViewById(R.id.rating_item_rating);
+            verified = itemView.findViewById(R.id.tvVerified);
         }
 
         public void bind(Review review , Boolean isUser) {
@@ -79,6 +78,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             this.date.setText(DateConverter.convertToFormat(review.getDate()));
             this.review.setText(review.getReview());
             this.ratingBar.setRating(review.getRating());
+            if (review.getVerified()) {
+                this.verified.setVisibility(View.VISIBLE);
+            }
+            else {
+                this.verified.setVisibility(View.GONE);
+            }
         }
     }
 }

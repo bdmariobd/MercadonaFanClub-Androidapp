@@ -69,9 +69,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
         public void bind(Product product) {
             productName.setText(product.getDisplayName());
             if (product.getPriceInstructions().getPreviousUnitPrice() != null) {
-                SpannableString spannableString = new SpannableString(product.getPriceInstructions().getPreviousUnitPrice() + "€ " +
+                SpannableString spannableString = new SpannableString(product.getPriceInstructions().getPreviousUnitPrice() + "€\n"+
                         product.getPriceInstructions().getUnitPrice() + "€");
-                spannableString.setSpan(new StrikethroughSpan(), 0, product.getPriceInstructions().getPreviousUnitPrice().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spannableString.setSpan(new StrikethroughSpan(), 0, product.getPriceInstructions().getPreviousUnitPrice().length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 productPrice.setText(spannableString);
             } else {
                 productPrice.setText(product.getPriceInstructions().getUnitPrice() + "€");

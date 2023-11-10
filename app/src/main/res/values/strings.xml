@@ -26,4 +26,5 @@
     <string name="scan">Verifica la compra (opcional)</string>
     <string name="product_non_verified">Compra verificada</string>
     <string name="barcode_not_matching">El código de barras no coincide</string>
+    <string name="verified_review">✓ Valoración verificada</string>
 </resources>

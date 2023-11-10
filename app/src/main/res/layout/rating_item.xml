@@ -43,6 +43,14 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvVerified"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/verified_review"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/rating_item_review"
         style="@style/MaterialAlertDialog.Material3.Body.Text"
         android:layout_width="match_parent"
