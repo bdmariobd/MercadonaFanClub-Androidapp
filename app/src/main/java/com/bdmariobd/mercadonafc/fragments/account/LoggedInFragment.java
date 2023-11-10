@@ -24,6 +24,11 @@ import java.util.List;
 
 public class LoggedInFragment extends Fragment {
 
+    AccountFragment accountFragment;
+    public LoggedInFragment(AccountFragment accountFragment) {
+        this.accountFragment = accountFragment;
+    }
+
     Button btnCloseSession;
     TextView txtUserName;
 
@@ -62,7 +67,7 @@ public class LoggedInFragment extends Fragment {
     private void onCloseSessionClick(View view) {
         Application application = requireActivity().getApplication();
         ((MercadonaCFApplication) application).logout();
-
+        accountFragment.setFragmentBasedOnAuth();
     }
 
     private void retrieveUserReviews() {

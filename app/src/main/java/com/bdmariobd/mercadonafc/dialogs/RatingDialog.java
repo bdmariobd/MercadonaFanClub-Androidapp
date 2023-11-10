@@ -95,15 +95,19 @@ public class RatingDialog extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ratingBar = view.findViewById(R.id.ratingBarFragment);
         ratingBar.setRating(rating);
+        btnScanBarcode = view.findViewById(R.id.buttonScan);
         reviewEditText = view.findViewById(R.id.ratingDialogTextLayout);
+        rbVerified = view.findViewById(R.id.rb_product_verified);
         if (!application.isAutenticated()) {
             reviewEditText.setEnabled(false);
             reviewEditText.setHint(R.string.login_to_review);
+            btnScanBarcode.setEnabled(false);
+            rbVerified.setEnabled(false);
+            return;
         }
         scanner = GmsBarcodeScanning.getClient(this.getContext(), options);
-        btnScanBarcode = view.findViewById(R.id.buttonScan);
         btnScanBarcode.setOnClickListener(this::onScanBarcodeClick);
-        rbVerified = view.findViewById(R.id.rb_product_verified);
+
     }
 
     private Review getReview() {
@@ -121,13 +125,14 @@ public class RatingDialog extends DialogFragment {
                 .addOnSuccessListener(
                         barcode -> {
                             String rawValue = barcode.getRawValue();
-                            if(rawValue == product.getEan()){
+                            if(rawValue.equals(product.getEan())){
                                 rbVerified.setChecked(true);
                                 isVerified = true;
                             }
                             else{
                                 String message = getResources().getString(R.string.barcode_not_matching);
                                 Toast.makeText(this.getContext(),message , Toast.LENGTH_LONG).show();
+                                Log.e("Barcode", message + " " + rawValue + " " + product.getEan());
                             }
                         })
                 .addOnCanceledListener(

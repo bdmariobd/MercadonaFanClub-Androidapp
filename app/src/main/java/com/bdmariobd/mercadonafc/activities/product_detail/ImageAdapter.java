@@ -57,6 +57,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         void onClick(ImageView imageView, String path);
     }
 
+    public void setPhotoList(List<Photo> photoList) {
+        this.photoList = photoList;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
 

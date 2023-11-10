@@ -39,7 +39,7 @@ public class AccountFragment extends Fragment {
         if (!application.isAutenticated()) {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment()).commit();
         } else {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment(this)).commit();
         }
         String photoUrl = application.getPhotoUrl() != null ? application.getPhotoUrl().toString() : "";
     }

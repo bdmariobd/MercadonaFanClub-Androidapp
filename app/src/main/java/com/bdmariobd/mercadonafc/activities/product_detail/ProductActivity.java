@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -79,18 +80,20 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
         service = retrofit.create(MercadonaAPIService.class);
         Call<Product> call = service.getProductById(product.getId());
 
+        ImageAdapter adapter = new ImageAdapter(ProductActivity.this, new ArrayList<>());
+        carouselRecyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener((imageView, path) -> {
+                    startActivity(new Intent(ProductActivity.this, FullScreenImageActivity.class)
+                            .putExtra("image", path), ActivityOptions.makeSceneTransitionAnimation(ProductActivity.this, imageView, "image").toBundle());
+                }
+        );
+
         call.enqueue(new Callback<Product>() {
                          @Override
                          public void onResponse(Call<Product> call, Response<Product> response) {
                              product = response.body();
                              List<Photo> arrayList = product.getPhotos();
-                             ImageAdapter adapter = new ImageAdapter(ProductActivity.this, arrayList);
-                             carouselRecyclerView.setAdapter(adapter);
-                             adapter.setOnItemClickListener((imageView, path) -> {
-                                         startActivity(new Intent(ProductActivity.this, FullScreenImageActivity.class)
-                                                 .putExtra("image", path), ActivityOptions.makeSceneTransitionAnimation(ProductActivity.this, imageView, "image").toBundle());
-                                     }
-                             );
+                             adapter.setPhotoList(arrayList);
                              productTitle = findViewById(R.id.productTitle);
                              productInfo = findViewById(R.id.productInfo);
                              productTitle.setText(product.getDisplayName());
@@ -99,6 +102,7 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                              }
                              String info = product.getBrand() + " " + product.getPriceInstructions().getUnitPrice() + "€";
                              productInfo.setText(info);
+                             carouselRecyclerView.setVisibility(arrayList.size() > 0 ? android.view.View.VISIBLE : android.view.View.GONE);
                          }
 
                          @Override
