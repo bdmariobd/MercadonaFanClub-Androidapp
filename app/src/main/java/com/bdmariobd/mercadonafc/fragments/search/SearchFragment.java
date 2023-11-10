@@ -1,27 +1,19 @@
 package com.bdmariobd.mercadonafc.fragments.search;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.activities.MainActivity;
 import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
-import com.bdmariobd.mercadonafc.fragments.home.HomeFragment;
 import com.bdmariobd.mercadonafc.models.Categories;
-import com.google.mlkit.vision.barcode.common.Barcode;
-import com.google.mlkit.vision.codescanner.GmsBarcodeScanner;
-import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions;
-import com.google.mlkit.vision.codescanner.GmsBarcodeScanning;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +33,7 @@ public class SearchFragment extends Fragment {
     List<String> expandableListTitle;
     HashMap<String, List<Pair<String, String>>> expandableListDetail; // Pair<product name, product id>
     private MercadonaAPIService apiService;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +61,6 @@ public class SearchFragment extends Fragment {
         this.setUpExpandableListView();
         this.fetchCategories();
     }
-
-
 
 
     private void setUpExpandableListView() {

@@ -25,16 +25,15 @@ import java.util.List;
 public class LoggedInFragment extends Fragment {
 
     AccountFragment accountFragment;
+    Button btnCloseSession;
+    TextView txtUserName;
+    RecyclerView recyclerView;
+    ReviewAdapter reviewAdapter;
+
     public LoggedInFragment(AccountFragment accountFragment) {
         this.accountFragment = accountFragment;
     }
 
-    Button btnCloseSession;
-    TextView txtUserName;
-
-    RecyclerView recyclerView;
-
-    ReviewAdapter reviewAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +76,7 @@ public class LoggedInFragment extends Fragment {
             if (task.isSuccessful()) {
                 List<Review> reviews = task.getResult().toObjects(Review.class);
                 reviewAdapter.setReviewList(reviews);
-            }
-            else {
+            } else {
                 Log.e("ERRORAccount", task.getException().getMessage());
             }
         });

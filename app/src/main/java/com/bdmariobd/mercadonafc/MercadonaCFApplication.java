@@ -1,7 +1,6 @@
 package com.bdmariobd.mercadonafc;
 
 import android.net.Uri;
-import android.os.Parcelable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

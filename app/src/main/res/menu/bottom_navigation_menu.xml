@@ -4,15 +4,15 @@
         android:id="@+id/menu_home"
         android:enabled="true"
         android:icon="@drawable/baseline_home_24"
-        android:title="@string/bottommenu_home"/>
+        android:title="@string/bottommenu_home" />
     <item
         android:id="@+id/menu_search"
         android:enabled="true"
         android:icon="@drawable/baseline_search_24"
-        android:title="@string/bottommenu_search"/>
+        android:title="@string/bottommenu_search" />
     <item
         android:id="@+id/menu_account"
         android:enabled="true"
         android:icon="@drawable/baseline_person_24"
-        android:title="@string/bottommenu_account"/>
+        android:title="@string/bottommenu_account" />
 </menu>

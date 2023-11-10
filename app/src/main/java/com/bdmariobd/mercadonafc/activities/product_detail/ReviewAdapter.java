@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.R;
 import com.bdmariobd.mercadonafc.utils.DateConverter;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,11 +66,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             verified = itemView.findViewById(R.id.tvVerified);
         }
 
-        public void bind(Review review , Boolean isUser) {
+        public void bind(Review review, Boolean isUser) {
             if (isUser) {
                 this.user.setText(review.getProductName());
-            }
-            else {
+            } else {
                 this.user.setText(review.getAuthor());
             }
             this.date.setText(DateConverter.convertToFormat(review.getDate()));
@@ -80,8 +77,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             this.ratingBar.setRating(review.getRating());
             if (review.getVerified()) {
                 this.verified.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 this.verified.setVisibility(View.GONE);
             }
         }

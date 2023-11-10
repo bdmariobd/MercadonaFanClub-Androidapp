@@ -107,7 +107,7 @@ public class Review {
         this.id = id;
     }
 
-@NonNull
+    @NonNull
     public String getUserId() {
         return userId;
     }

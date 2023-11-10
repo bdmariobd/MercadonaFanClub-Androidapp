@@ -125,13 +125,12 @@ public class RatingDialog extends DialogFragment {
                 .addOnSuccessListener(
                         barcode -> {
                             String rawValue = barcode.getRawValue();
-                            if(rawValue.equals(product.getEan())){
+                            if (rawValue.equals(product.getEan())) {
                                 rbVerified.setChecked(true);
                                 isVerified = true;
-                            }
-                            else{
+                            } else {
                                 String message = getResources().getString(R.string.barcode_not_matching);
-                                Toast.makeText(this.getContext(),message , Toast.LENGTH_LONG).show();
+                                Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
                                 Log.e("Barcode", message + " " + rawValue + " " + product.getEan());
                             }
                         })

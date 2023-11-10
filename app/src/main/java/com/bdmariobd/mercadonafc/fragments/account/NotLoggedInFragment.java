@@ -60,7 +60,7 @@ public class NotLoggedInFragment extends Fragment {
                 .setAvailableProviders(providers)
                 .setTheme(R.style.AppTheme)
                 .setLogo(R.drawable.mercadonalogo)
-                .setIsSmartLockEnabled(false)
+                .setIsSmartLockEnabled(true)
                 .build();
         signInLauncher.launch(signInIntent);
 

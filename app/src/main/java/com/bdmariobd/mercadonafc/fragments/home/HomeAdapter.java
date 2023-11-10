@@ -2,9 +2,6 @@ package com.bdmariobd.mercadonafc.fragments.home;
 
 import android.content.Intent;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +75,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
                 productPrice.setText(product.getPriceInstructions().getUnitPrice() + "€");
             }
             String description = "";
-            if(product.getPackaging() != null)
-            description += product.getPackaging() + ":";
+            if (product.getPackaging() != null)
+                description += product.getPackaging() + ":";
             else description += "Unidad:";
             productDescription.setText(description);
             Picasso.get()

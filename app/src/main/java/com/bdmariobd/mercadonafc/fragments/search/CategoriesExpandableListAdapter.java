@@ -10,18 +10,17 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.bdmariobd.mercadonafc.R;
-import com.bdmariobd.mercadonafc.models.Product;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
-    private Context context;
-    private List<String> expandableListTitle;
-    private HashMap<String, List<Pair<String,String>>> expandableListDetail; // Pair<product name, product id>
+    private final Context context;
+    private final List<String> expandableListTitle;
+    private final HashMap<String, List<Pair<String, String>>> expandableListDetail; // Pair<product name, product id>
 
     public CategoriesExpandableListAdapter(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<Pair<String,String>>> expandableListDetail) {
+                                           HashMap<String, List<Pair<String, String>>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -83,7 +82,7 @@ public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.search_list_group, null);
         }
-         TextView listTitleTextView = (TextView) convertView
+        TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);

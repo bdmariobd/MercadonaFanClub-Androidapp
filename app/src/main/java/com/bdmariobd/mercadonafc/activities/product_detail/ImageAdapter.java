@@ -53,13 +53,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         this.onItemClickListener = onItemClickListener;
     }
 
-    public interface OnItemClickListener {
-        void onClick(ImageView imageView, String path);
-    }
-
     public void setPhotoList(List<Photo> photoList) {
         this.photoList = photoList;
         notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener {
+        void onClick(ImageView imageView, String path);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
