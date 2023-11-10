@@ -33,4 +33,8 @@ public class MercadonaCFApplication extends android.app.Application {
     public Uri getPhotoUrl() {
         return this.isAutenticated() ? mAuth.getCurrentUser().getPhotoUrl() : null;
     }
+
+    public String getUserId() {
+        return this.isAutenticated() ? mAuth.getCurrentUser().getUid() : null;
+    }
 }

@@ -22,4 +22,8 @@
     <string name="singleEntrance_db_name">review</string>
     <string name="login_to_review">Inicia sesión para valorar productos</string>
     <string name="totalReviews">valoraciones totales</string>
+    <string name="no_reviews">No hay valoraciones</string>
+    <string name="scan">Verifica la compra (opcional)</string>
+    <string name="product_non_verified">Compra verificada</string>
+    <string name="barcode_not_matching">El código de barras no coincide</string>
 </resources>

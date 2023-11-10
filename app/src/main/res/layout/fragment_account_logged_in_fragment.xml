@@ -17,6 +17,18 @@
         android:layout_height="wrap_content"
         android:text="@string/why_should_create_account" />
 
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.Material3.HeadlineSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reviews" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_profile_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <Button
         android:id="@+id/closeSessionButton"
         android:layout_width="match_parent"

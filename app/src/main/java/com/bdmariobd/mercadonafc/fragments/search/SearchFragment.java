@@ -35,14 +35,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchFragment extends Fragment {
-    GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
-            .setBarcodeFormats(
-                    Barcode.FORMAT_EAN_13
-            )
-            .build();
 
-    GmsBarcodeScanner scanner;
-    Button btnScanBarcode;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
@@ -57,7 +50,6 @@ public class SearchFragment extends Fragment {
                 .build();
 
         apiService = retrofit.create(MercadonaAPIService.class);
-        scanner = GmsBarcodeScanning.getClient(this.getContext(), options);
         expandableListTitle = new ArrayList<>();
         expandableListDetail = new HashMap<>();
     }
@@ -71,32 +63,14 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnScanBarcode = view.findViewById(R.id.buttonScan);
-        btnScanBarcode.setOnClickListener(this::onScanBarcodeClick);
+
         expandableListView = view.findViewById(R.id.searcg_fragment_list);
         this.setUpExpandableListView();
         this.fetchCategories();
     }
 
 
-    public void onScanBarcodeClick(View view) {
-        scanner
-                .startScan()
-                .addOnSuccessListener(
-                        barcode -> {
-                            String rawValue = barcode.getRawValue();
-                            Log.d("Barcode", rawValue);
-                            Toast.makeText(this.getContext(), rawValue, Toast.LENGTH_LONG).show();
-                        })
-                .addOnCanceledListener(
-                        () -> {
-                            Log.d("Barcode", "cancelled");
-                        })
-                .addOnFailureListener(
-                        e -> {
-                            Log.d("Barcode", e.getMessage());
-                        });
-    }
+
 
     private void setUpExpandableListView() {
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());

@@ -35,12 +35,9 @@ public class HomeFragment extends Fragment {
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                    getTrendingProducts();
-                    break;
-                case 1:
                     getPriceDrops();
                     break;
-                case 2:
+                case 1:
                     getNewProducts();
                     break;
             }
@@ -80,11 +77,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tabLayout = getView().findViewById(R.id.hometab_tab);
-        tabLayout.selectTab(tabLayout.getTabAt(1));
+        tabLayout.selectTab(tabLayout.getTabAt(0));
         tabLayout.addOnTabSelectedListener(onTabSelectedListener);
         recyclerView = getView().findViewById(R.id.home_rv);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(homeAdapter);
+        getPriceDrops();
     }
 
     private void getTrendingProducts() {

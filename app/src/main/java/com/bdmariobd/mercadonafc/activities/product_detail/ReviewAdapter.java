@@ -19,9 +19,15 @@ import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingViewHolder> {
     List<Review> reviewList;
+    Boolean isUser = false;
 
     public ReviewAdapter() {
         this.reviewList = new ArrayList<>();
+    }
+
+    public ReviewAdapter(Boolean isUser) {
+        this.reviewList = new ArrayList<>();
+        this.isUser = isUser;
     }
 
     @NonNull
@@ -33,7 +39,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
 
     @Override
     public void onBindViewHolder(@NonNull RatingViewHolder holder, int position) {
-        holder.bind(reviewList.get(position));
+        holder.bind(reviewList.get(position), isUser);
     }
 
     @Override
@@ -63,8 +69,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
             ratingBar = itemView.findViewById(R.id.rating_item_rating);
         }
 
-        public void bind(Review review) {
-            this.user.setText(review.getAuthor());
+        public void bind(Review review , Boolean isUser) {
+            if (isUser) {
+                this.user.setText(review.getProductName());
+            }
+            else {
+                this.user.setText(review.getAuthor());
+            }
             this.date.setText(DateConverter.convertToFormat(review.getDate()));
             this.review.setText(review.getReview());
             this.ratingBar.setRating(review.getRating());

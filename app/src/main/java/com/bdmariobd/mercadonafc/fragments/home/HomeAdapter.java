@@ -69,7 +69,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
         public void bind(Product product) {
             productName.setText(product.getDisplayName());
             if (product.getPriceInstructions().getPreviousUnitPrice() != null) {
-                SpannableString spannableString = new SpannableString(product.getPriceInstructions().getPreviousUnitPrice() +
+                SpannableString spannableString = new SpannableString(product.getPriceInstructions().getPreviousUnitPrice() + "€ " +
                         product.getPriceInstructions().getUnitPrice() + "€");
                 spannableString.setSpan(new StrikethroughSpan(), 0, product.getPriceInstructions().getPreviousUnitPrice().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 productPrice.setText(spannableString);
@@ -77,11 +77,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ProductPreview
                 productPrice.setText(product.getPriceInstructions().getUnitPrice() + "€");
             }
             String description = "";
-            description += product.getPackaging();
-            description += " ";
-            description += product.getPriceInstructions().getTotalUnits();
-            description += " ";
-            description += product.getPriceInstructions().getUnitName();
+            if(product.getPackaging() != null)
+            description += product.getPackaging() + ":";
+            else description += "Unidad:";
             productDescription.setText(description);
             Picasso.get()
                     .load(product.getThumbnail())

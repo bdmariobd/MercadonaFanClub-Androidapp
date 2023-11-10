@@ -11,12 +11,6 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/hometab_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hometab_all" />
-
-        <com.google.android.material.tabs.TabItem
             android:id="@+id/hometab_priceDrop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

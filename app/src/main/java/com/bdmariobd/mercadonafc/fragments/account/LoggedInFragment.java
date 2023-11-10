@@ -2,6 +2,7 @@ package com.bdmariobd.mercadonafc.fragments.account;
 
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +10,25 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.MercadonaCFApplication;
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.activities.product_detail.Review;
+import com.bdmariobd.mercadonafc.activities.product_detail.ReviewAdapter;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
 
 public class LoggedInFragment extends Fragment {
 
     Button btnCloseSession;
     TextView txtUserName;
 
+    RecyclerView recyclerView;
+
+    ReviewAdapter reviewAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +48,11 @@ public class LoggedInFragment extends Fragment {
         btnCloseSession.setOnClickListener(this::onCloseSessionClick);
         txtUserName = view.findViewById(R.id.tvAccountUsername);
         txtUserName.setText(application.getName());
+        recyclerView = view.findViewById(R.id.user_profile_reviews);
+        reviewAdapter = new ReviewAdapter(true);
+        recyclerView.setAdapter(reviewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        retrieveUserReviews();
     }
 
     private void onCloseSessionClick(View view) {
@@ -44,4 +60,19 @@ public class LoggedInFragment extends Fragment {
         ((MercadonaCFApplication) application).logout();
 
     }
+
+    private void retrieveUserReviews() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = ((MercadonaCFApplication) requireActivity().getApplication()).getUserId();
+        db.collectionGroup(getResources().getString(R.string.singleEntrance_db_name)).whereEqualTo("userId", userId).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Review> reviews = task.getResult().toObjects(Review.class);
+                reviewAdapter.setReviewList(reviews);
+            }
+            else {
+                Log.e("ERRORAccount", task.getException().getMessage());
+            }
+        });
+    }
+
 }

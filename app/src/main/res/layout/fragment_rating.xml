@@ -33,4 +33,18 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <RadioButton
+        android:id="@+id/rb_product_verified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:clickable="false"
+        android:text="@string/product_non_verified" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/scan"/>
+
 </LinearLayout>

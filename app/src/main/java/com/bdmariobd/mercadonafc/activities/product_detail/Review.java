@@ -14,17 +14,54 @@ public class Review {
     private Date date;
     private String author;
 
+    private String userId;
+
     private String id;
+
+    private String productName;
+
+    private Boolean isVerified = false;
 
     public Review() {
         // Needed for Firebase
     }
 
-    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id) {
+    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName) {
         this.review = review;
         this.rating = rating;
+        this.date = date;
         this.author = author;
+        this.userId = userId;
         this.id = id;
+        this.productName = productName;
+    }
+
+    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName, @NonNull Boolean isVerified) {
+        this.review = review;
+        this.rating = rating;
+        this.date = date;
+        this.author = author;
+        this.userId = userId;
+        this.id = id;
+        this.productName = productName;
+        this.isVerified = isVerified;
+    }
+
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(Boolean verified) {
+        isVerified = verified;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     @Nullable
@@ -72,6 +109,14 @@ public class Review {
         this.id = id;
     }
 
+@NonNull
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,7 @@
 package com.bdmariobd.mercadonafc.activities.product_detail;
 
+import static java.lang.Math.round;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,7 +86,10 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                              productTitle = findViewById(R.id.productTitle);
                              productInfo = findViewById(R.id.productInfo);
                              productTitle.setText(product.getDisplayName());
-                             String info = product.getBrand() + " " + product.getPriceInstructions().getUnitPrice() + "€";
+                             if (product.getBrand() == null) {
+                                 product.setBrand("");
+                             }
+                             String info = product.getBrand()+ " " + product.getPriceInstructions().getUnitPrice() + "€";
                              productInfo.setText(info);
                          }
 
@@ -132,14 +137,19 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                         Integer totalReviews = reviewList.size();
                         Double averageRating = reviewList.stream().mapToDouble(Review::getRating).sum() / totalReviews;
                         productReviews = findViewById(R.id.product_reviews_tv);
-                        productReviews.setText(
-                                +averageRating
-                                        + "(" + totalReviews + " "
-                                        + getResources().getString(R.string.totalReviews)
-                                        + ")");
-                        Collections.reverse(reviewList);
-                        reviewAdapter.setReviewList(reviewList);
-                        Log.d("Listreviews", reviewList.toString());
+                        if (totalReviews == 0) {
+                            productReviews.setText(getResources().getString(R.string.no_reviews));
+                        }
+                        else {
+                            productReviews.setText(
+                                    + round(averageRating * 10.0) / 10.0
+                                            + "(" + totalReviews + " "
+                                            + getResources().getString(R.string.totalReviews)
+                                            + ")");
+                            Collections.reverse(reviewList);
+                            reviewAdapter.setReviewList(reviewList);
+                        }
+
                     } else {
                         Log.w("TAG", "Error getting documents.", task.getException());
                     }
