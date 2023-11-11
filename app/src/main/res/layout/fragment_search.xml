@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TextAppearance.Material3.ActionBar.Title"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.Material3.ActionBar.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingTop="20px"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:text="@string/categories" />
 
     <ExpandableListView
         android:id="@+id/searcg_fragment_list"
