@@ -114,7 +114,7 @@ public class RatingDialog extends DialogFragment {
         String username = application.getName();
         Float rating = ratingBar.getRating();
         UUID uuid = UUID.randomUUID();
-        return new Review(review, rating, username, uuid.toString(), application.getUserId(), product.getDisplayName(), isVerified);
+        return new Review(review, rating, username, uuid.toString(), application.getUserId(), product.getDisplayName(), isVerified, product.getId());
     }
 
     public void onScanBarcodeClick(View view) {

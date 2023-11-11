@@ -22,20 +22,23 @@ public class Review {
 
     private Boolean isVerified = false;
 
+    private String productId;
+
     public Review() {
         // Needed for Firebase
     }
 
-    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName) {
+    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName, @NonNull String productId) {
         this.review = review;
         this.rating = rating;
         this.author = author;
         this.userId = userId;
         this.id = id;
         this.productName = productName;
+        this.productId = productId;
     }
 
-    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName, @NonNull Boolean isVerified) {
+    public Review(@Nullable String review, @NonNull Float rating, @NonNull String author, @NonNull String id, @NonNull String userId, @NonNull String productName, @NonNull Boolean isVerified , @NonNull String productId) {
         this.review = review;
         this.rating = rating;
         this.author = author;
@@ -43,8 +46,16 @@ public class Review {
         this.id = id;
         this.productName = productName;
         this.isVerified = isVerified;
+        this.productId = productId;
     }
 
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
     public Boolean getVerified() {
         return isVerified;

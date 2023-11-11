@@ -363,6 +363,10 @@ public class Product {
     @Expose
     private NutritionInformation nutritionInformation;
 
+    public Product(String productId) {
+        this.id = productId;
+    }
+
     @Override
     public String toString() {
         return "Product{" +

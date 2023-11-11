@@ -6,10 +6,12 @@
 
     <TextView
         android:id="@+id/listTitle"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
+        android:paddingBottom="10dp"
+        android:text="@string/sample_text_short" />
 
 </LinearLayout>

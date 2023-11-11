@@ -138,6 +138,8 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
         db.collection(getResources().getString(R.string.reviews_db_name))
                 .document(productId)
                 .collection(getResources().getString(R.string.singleEntrance_db_name))
+                .orderBy("verified" , com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

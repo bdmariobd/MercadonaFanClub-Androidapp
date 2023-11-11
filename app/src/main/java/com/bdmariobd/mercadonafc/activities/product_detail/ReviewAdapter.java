@@ -1,16 +1,21 @@
 package com.bdmariobd.mercadonafc.activities.product_detail;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
+import com.bdmariobd.mercadonafc.models.Product;
 import com.bdmariobd.mercadonafc.utils.DateConverter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +74,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.RatingView
         public void bind(Review review, Boolean isUser) {
             if (isUser) {
                 this.user.setText(review.getProductName());
+                LinearLayout linearLayout = itemView.findViewById(R.id.rating_item_layout);
+                linearLayout.setOnClickListener(v -> {
+                    Intent intent = new Intent(itemView.getContext(), ProductActivity.class);
+                    intent.putExtra("product", new Gson().toJson(new Product(review.getProductId())));
+                    itemView.getContext().startActivity(intent);
+                });
             } else {
                 this.user.setText(review.getAuthor());
             }
