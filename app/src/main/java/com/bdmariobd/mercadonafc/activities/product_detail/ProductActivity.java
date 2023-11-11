@@ -35,7 +35,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProductActivity extends AppCompatActivity implements FirebaseAuth.AuthStateListener {
+public class ProductActivity extends AppCompatActivity {
     RecyclerView carouselRecyclerView, reviewRecyclerView;
     ReviewAdapter reviewAdapter;
     private MercadonaAPIService service;
@@ -117,11 +117,6 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
         newFragment.show(fragmentManager, "rating");
     }
 
-    @Override
-    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-        // TODO LOCK OR UNLOCK RATING
-    }
-
     public void sendProductReview(String productId, Review review) {
         db.collection(getResources().getString(R.string.reviews_db_name)).document(productId)
                 .collection(getResources().getString(R.string.singleEntrance_db_name))
@@ -164,6 +159,5 @@ public class ProductActivity extends AppCompatActivity implements FirebaseAuth.A
                     }
 
                 });
-
     }
 }
