@@ -6,9 +6,9 @@
 
 Mercadona Fan Club es una aplicación que permite a los usuarios de Mercadona compartir sus experiencias de compra con el resto de usuarios. Los usuarios podrán compartir sus opiniones sobre los productos que han comprado. Además, podrán consultar las opiniones de otros usuarios sobre los productos.
 
-Video: 
+Video:
 
-[![Watch the video](http://i3.ytimg.com/vi/N4OZIjzmqTs/hqdefault.jpg)](https://youtu.be/N4OZIjzmqTs) 
+[![Watch the video](http://i3.ytimg.com/vi/N4OZIjzmqTs/hqdefault.jpg)](https://youtu.be/N4OZIjzmqTs)
 
 ## Funcionalidad
 
@@ -45,8 +45,6 @@ Al clickear en cualquiera de ellas, navegará a la pantalla de detalle del produ
 
 ### Detalle del producto
 
-TODO CAPTURAS
-
 En la pantalla de detalle del producto, los usuarios podrán ver las valoraciones de otros usuarios sobre el producto. Además, podrán aportar su valoración.
 
 En la parte superior, se muestra un carrusel con las imágenes del producto. Pinchando en cualquiera de ellas, se abrirá la imagen en pantalla completa.
@@ -58,6 +56,11 @@ Si el código de barras coincide con el del producto, se marcará como verificad
 
 En la parte inferior, se muestra un listado con las valoraciones de otros usuarios. Por motivos de población de la base de datos, no he limitado el número de valoraciones,
 por lo que un usuario puede valorar un producto varias veces. En un futuro, se limitaría el número de valoraciones por usuario y producto a 1.
+
+<img src="images/product_view.png" alt="drawing" width="200"/>
+<img src="images/product_ratingDialog.png" alt="drawing" width="200"/>
+<img src="images/product_scanbarcode.png" alt="drawing" width="200"/>
+<img src="images/product_verified.png" alt="drawing" width="200"/>
 
 ## Usuarios - Firebase Authentication
 
@@ -106,5 +109,3 @@ Se ha escogido la implementación que ofrece Google para desarrollar esta funcio
 Para ello, se delega la tarea de escanear el código a los Servicios de Google Play.
 Todo el procesamiento de imágenes se lleva a cabo en el dispositivo, por lo que la app no requiere permisos de cámara.
 Google no almacena los resultados ni los datos de imagen. Requiere de los servicios de Google Play instalados en el dispositivo.
-
-TODO CAPTURAS
