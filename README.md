@@ -6,9 +6,9 @@
 
 Mercadona Fan Club es una aplicación que permite a los usuarios de Mercadona compartir sus experiencias de compra con el resto de usuarios. Los usuarios podrán compartir sus opiniones sobre los productos que han comprado. Además, podrán consultar las opiniones de otros usuarios sobre los productos.
 
-<video width="500" height="500" controls>
-  <source src="videos/MercadonaCFpromovideo.mp4" type="video/mp4">
-</video>
+Video: 
+
+[![Watch the video](http://i3.ytimg.com/vi/N4OZIjzmqTs/hqdefault.jpg)](https://youtu.be/N4OZIjzmqTs) 
 
 ## Funcionalidad
 
