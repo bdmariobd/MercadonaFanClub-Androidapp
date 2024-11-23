@@ -62,6 +62,8 @@ public class LoggedInFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation()));
         retrieveUserReviews(view);
+        Button shoppingCartButton = view.findViewById(R.id.openShoppingCartButton);
+        shoppingCartButton.setOnClickListener(v -> accountFragment.onClickShoppingCartButton());
     }
 
     private void onCloseSessionClick(View view) {

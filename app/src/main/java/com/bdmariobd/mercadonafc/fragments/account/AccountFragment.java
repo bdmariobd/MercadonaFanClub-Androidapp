@@ -1,5 +1,6 @@
 package com.bdmariobd.mercadonafc.fragments.account;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.MercadonaCFApplication;
 import com.bdmariobd.mercadonafc.R;
+import com.bdmariobd.mercadonafc.activities.shoppingCart.ShoppingCart;
 
 public class AccountFragment extends Fragment {
 
@@ -34,10 +36,15 @@ public class AccountFragment extends Fragment {
         setFragmentBasedOnAuth();
     }
 
+    void onClickShoppingCartButton() {
+        Intent intent = new Intent(getActivity(), ShoppingCart.class);
+        startActivity(intent);
+    }
+
     public void setFragmentBasedOnAuth() {
         MercadonaCFApplication application = (MercadonaCFApplication) requireActivity().getApplication();
         if (!application.isAutenticated()) {
-            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment()).commit();
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new NotLoggedInFragment(this)).commit();
         } else {
             requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userLogedFragmentContainer, new LoggedInFragment(this)).commit();
         }

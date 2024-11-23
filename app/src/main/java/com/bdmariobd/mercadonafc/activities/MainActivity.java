@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         );
         bottomNavigationView.setSelectedItemId(R.id.menu_home);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, homeFragment).commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         setAccountTabUserContent();
     }
 

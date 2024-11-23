@@ -28,4 +28,6 @@
     <string name="barcode_not_matching">El código de barras no coincide</string>
     <string name="verified_review">✓ Valoración verificada</string>
     <string name="categories">Categorías</string>
+    <string name="go_to_shopping_list">Lista de la compra</string>
+    <string name="see">Ver</string>
 </resources>

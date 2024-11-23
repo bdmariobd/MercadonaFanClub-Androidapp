@@ -30,6 +30,12 @@ public class NotLoggedInFragment extends Fragment {
             this::onSignInResult
     );
     Button btnLogin;
+    final AccountFragment accountFragment;
+
+    public NotLoggedInFragment(AccountFragment accountFragment) {
+        this.accountFragment = accountFragment;
+    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +52,8 @@ public class NotLoggedInFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         btnLogin = view.findViewById(R.id.identifyButton);
         btnLogin.setOnClickListener(this::onIdentifyClick);
+        Button shoppingCartButton = view.findViewById(R.id.openShoppingCartButton);
+        shoppingCartButton.setOnClickListener(v -> accountFragment.onClickShoppingCartButton());
     }
 
     public void onIdentifyClick(View view) {
