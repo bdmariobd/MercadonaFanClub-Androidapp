@@ -13,6 +13,7 @@ import com.bdmariobd.mercadonafc.R;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
     private final Context context;
@@ -28,7 +29,7 @@ public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int listPosition, int expandedListPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
+        return Objects.requireNonNull(this.expandableListDetail.get(this.expandableListTitle.get(listPosition)))
                 .get(expandedListPosition).first;
     }
 
@@ -54,7 +55,7 @@ public class CategoriesExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
+        return Objects.requireNonNull(this.expandableListDetail.get(this.expandableListTitle.get(listPosition)))
                 .size();
     }
 

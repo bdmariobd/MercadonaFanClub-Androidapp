@@ -20,6 +20,7 @@ import com.bdmariobd.mercadonafc.models.Result;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import retrofit2.Call;
@@ -72,7 +73,7 @@ public class SearchFragment extends Fragment {
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             // TODO open products list
             MainActivity mainActivity = (MainActivity) this.requireActivity();
-            String categoryId = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition).second;
+            String categoryId = Objects.requireNonNull(expandableListDetail.get(expandableListTitle.get(groupPosition))).get(childPosition).second;
             mainActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProductsByCategoryFragment(categoryId)).commit();
             return false;
         });
@@ -81,11 +82,11 @@ public class SearchFragment extends Fragment {
 
     private void fetchCategories() {
         Call<Categories> call = apiService.getCategories();
-        call.enqueue(new Callback<Categories>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<Categories> call, @NonNull Response<Categories> response) {
                 Categories categories = response.body();
-                expandableListTitle = categories.getResults().stream()
+                expandableListTitle = Objects.requireNonNull(categories).getResults().stream()
                         .map(Result::getName)
                         .collect(Collectors.toList());
                 expandableListDetail = new HashMap<>(categories.getResults().stream()

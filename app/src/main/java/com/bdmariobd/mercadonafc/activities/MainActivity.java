@@ -1,15 +1,8 @@
 package com.bdmariobd.mercadonafc.activities;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -19,8 +12,6 @@ import com.bdmariobd.mercadonafc.fragments.account.AccountFragment;
 import com.bdmariobd.mercadonafc.fragments.home.HomeFragment;
 import com.bdmariobd.mercadonafc.fragments.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 
 public class MainActivity extends AppCompatActivity {

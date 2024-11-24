@@ -22,6 +22,7 @@ import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class NotLoggedInFragment extends Fragment {
 
@@ -77,7 +78,7 @@ public class NotLoggedInFragment extends Fragment {
         if (result.getResultCode() == RESULT_OK) {
             Log.i("NotLoggedInFragment", "User: logged in");
         } else {
-            Log.i("NotLoggedInFragment", "Error:  " + response.getError().getErrorCode());
+            Log.i("NotLoggedInFragment", "Error:  " + Objects.requireNonNull(response.getError()).getErrorCode());
         }
     }
 }

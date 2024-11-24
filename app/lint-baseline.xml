@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint Giraffe | 2022.3.1 Patch 2">
+
+    <issue
+        id="GradleCompatible"
+        message="Dependencies using groupId `com.android.support` and `androidx.*` can not be combined but found `com.android.support:exifinterface:27.1.0` and `androidx.appcompat:appcompat:1.7.0` incompatible dependencies">
+        <location
+            file="build.gradle"/>
+        <location
+            file="build.gradle"
+            line="39"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `enableOnBackInvokedCallback` is only used in API level 33 and higher (current min is 31)">
+        <location
+            file="src\main\AndroidManifest.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\fragments\search\CategoriesExpandableListAdapter.java"
+            line="47"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\fragments\search\CategoriesExpandableListAdapter.java"
+            line="83"/>
+    </issue>
+
+    <issue
+        id="VectorRaster"
+        message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more">
+        <location
+            file="src\main\res\drawable\mercadonalogo.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.4.0 is available: 2.8.7">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 21.2.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.gms:google-services than 4.4.0 is available: 4.4.2">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="PxUsage"
+        message="Avoid using &quot;`px`&quot; as units; use &quot;`dp`&quot; instead">
+        <location
+            file="src\main\res\layout\fragment_search.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="PxUsage"
+        message="Avoid using &quot;`px`&quot; as units; use &quot;`dp`&quot; instead">
+        <location
+            file="src\main\res\layout\fragment_search.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\fragments\home\HomeAdapter.java"
+            line="50"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\activities\product_detail\ImageAdapter.java"
+            line="58"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\activities\product_detail\ReviewAdapter.java"
+            line="56"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\activities\shoppingCart\ShoppingCartAdapter.kt"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 31">
+        <location
+            file="src\main\AndroidManifest.xml"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (1265 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector.">
+        <location
+            file="src\main\res\drawable\mercadonalogo.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (844 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector.">
+        <location
+            file="src\main\res\drawable\mercadonalogo.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (844 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector.">
+        <location
+            file="src\main\res\drawable\mercadonalogo.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (853 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector.">
+        <location
+            file="src\main\res\drawable\mercadonalogo.xml"
+            line="20"/>
+    </issue>
+
+    <issue
+        id="KaptUsageInsteadOfKsp"
+        message="This library supports using KSP instead of kapt, which greatly improves performance. Learn more: https://developer.android.com/studio/build/migrate-to-ksp">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_width` of `0dp` instead of `wrap_content` for better performance">
+        <location
+            file="src\main\res\layout\fragment_account_logged_in_fragment.xml"
+            line="24"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_width` of `0dp` instead of `wrap_content` for better performance">
+        <location
+            file="src\main\res\layout\fragment_account_not_logged_fragment.xml"
+            line="25"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_width` of `0dp` instead of `match_parent` for better performance">
+        <location
+            file="src\main\res\layout\product_preview.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_width` of `0dp` instead of `wrap_content` for better performance">
+        <location
+            file="src\main\res\layout\rating_item.xml"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.baseline_star_rate_24` appears to be unused">
+        <location
+            file="src\main\res\drawable\baseline_star_rate_24.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.seed` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_light_shadow` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="29"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_light_surfaceTint` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="30"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_light_outlineVariant` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="31"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_light_scrim` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="32"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_dark_shadow` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="59"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_dark_surfaceTint` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="60"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_dark_outlineVariant` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="61"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.md_theme_dark_scrim` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="62"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.custom_theme_light_opacityColor` appears to be unused">
+        <location
+            file="src\main\res\values\colors.xml"
+            line="63"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher` appears to be unused">
+        <location
+            file="src\main\res\mipmap-anydpi-v26\ic_launcher.xml"
+            line="2"/>
+        <location
+            file="src\main\res\mipmap-hdpi\ic_launcher.webp"/>
+        <location
+            file="src\main\res\mipmap-mdpi\ic_launcher.webp"/>
+        <location
+            file="src\main\res\mipmap-xhdpi\ic_launcher.webp"/>
+        <location
+            file="src\main\res\mipmap-xxhdpi\ic_launcher.webp"/>
+        <location
+            file="src\main\res\mipmap-xxxhdpi\ic_launcher.webp"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_launcher_foreground` appears to be unused">
+        <location
+            file="src\main\res\drawable\ic_launcher_foreground.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_round` appears to be unused">
+        <location
+            file="src\main\res\mipmap-anydpi-v26\ic_launcher_round.xml"
+            line="2"/>
+        <location
+            file="src\main\res\mipmap-hdpi\ic_launcher_round.webp"/>
+        <location
+            file="src\main\res\mipmap-mdpi\ic_launcher_round.webp"/>
+        <location
+            file="src\main\res\mipmap-xhdpi\ic_launcher_round.webp"/>
+        <location
+            file="src\main\res\mipmap-xxhdpi\ic_launcher_round.webp"/>
+        <location
+            file="src\main\res\mipmap-xxxhdpi\ic_launcher_round.webp"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.hometab_all` appears to be unused">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.comment_about_product` appears to be unused">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?">
+        <location
+            file="src\main\res\values\strings.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src\main\res\layout\activity_image_view.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src\main\res\layout\carusel_item_image_product.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src\main\res\layout\product_preview.xml"
+            line="24"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src\main\res\layout\rating_item.xml"
+            line="6"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src\main\res\layout\rating_item.xml"
+            line="6"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\fragments\home\HomeAdapter.java"
+            line="77"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\fragments\account\LoggedInFragment.java"
+            line="85"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src\main\java\com\bdmariobd\mercadonafc\activities\product_detail\ProductActivity.java"
+            line="149"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Button&quot;, should use `@string` resource">
+        <location
+            file="src\main\res\layout\activity_shopping_cart.xml"
+            line="19"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource">
+        <location
+            file="src\main\res\layout\product_preview.xml"
+            line="36"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource">
+        <location
+            file="src\main\res\layout\product_preview.xml"
+            line="44"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource">
+        <location
+            file="src\main\res\layout\product_preview.xml"
+            line="59"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;CheckBox&quot;, should use `@string` resource">
+        <location
+            file="src\main\res\layout\shopping_cart_item.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src\main\res\layout\fragment_search.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src\main\res\layout\fragment_search.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src\main\res\layout\search_list_group.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src\main\res\layout\search_list_group.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src\main\res\layout\search_list_item.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src\main\res\layout\search_list_item.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;?android:attr/expandableListPreferredItemPaddingLeft&quot;` to better support right-to-left layouts">
+        <location
+            file="src\main\res\layout\fragment_search.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;?android:attr/expandableListPreferredItemPaddingLeft&quot;` to better support right-to-left layouts">
+        <location
+            file="src\main\res\layout\fragment_search.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;?android:attr/expandableListPreferredItemPaddingLeft&quot;` to better support right-to-left layouts">
+        <location
+            file="src\main\res\layout\search_list_group.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;?android:attr/expandableListPreferredItemPaddingLeft&quot;` to better support right-to-left layouts">
+        <location
+            file="src\main\res\layout\search_list_group.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;?android:attr/expandableListPreferredChildPaddingLeft&quot;` to better support right-to-left layouts">
+        <location
+            file="src\main\res\layout\search_list_item.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;?android:attr/expandableListPreferredChildPaddingLeft&quot;` to better support right-to-left layouts">
+        <location
+            file="src\main\res\layout\search_list_item.xml"
+            line="12"/>
+    </issue>
+
+</issues>

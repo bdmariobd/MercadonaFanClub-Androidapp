@@ -3,19 +3,13 @@ package com.bdmariobd.mercadonafc.activities.shoppingCart
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bdmariobd.mercadonafc.R
 import com.bdmariobd.mercadonafc.integration.ShoppingCartEntity
 import com.bdmariobd.mercadonafc.model.ShoppingCartViewModel
-import kotlinx.coroutines.launch
-
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ShoppingCartActivity : AppCompatActivity() {
     private val shoppingCartAdapter = ShoppingCartAdapter()
@@ -51,7 +45,7 @@ class ShoppingCartActivity : AppCompatActivity() {
         val addItemToShoppingCartButton: Button = findViewById(R.id.addNewItemToCartButton)
         addItemToShoppingCartButton.setOnClickListener {
             // Launch a coroutine inside the lifecycleScope to run addNewItem() in the background
-                addNewItem()
+            addNewItem()
         }
     }
 

@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,12 +36,8 @@ public class HomeFragment extends Fragment {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
-                case 0:
-                    getPriceDrops();
-                    break;
-                case 1:
-                    getNewProducts();
-                    break;
+                case 0 -> getPriceDrops();
+                case 1 -> getNewProducts();
             }
         }
 
@@ -54,7 +51,6 @@ public class HomeFragment extends Fragment {
             recyclerView.smoothScrollToPosition(0);
         }
     };
-    private TabLayout tabLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +73,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tabLayout = getView().findViewById(R.id.hometab_tab);
+        TabLayout tabLayout = Objects.requireNonNull(getView()).findViewById(R.id.hometab_tab);
         tabLayout.selectTab(tabLayout.getTabAt(0));
         tabLayout.addOnTabSelectedListener(onTabSelectedListener);
         recyclerView = getView().findViewById(R.id.home_rv);
@@ -88,12 +84,12 @@ public class HomeFragment extends Fragment {
 
     private void getPriceDrops() {
         Call<PriceDrops> call = mercadonaAPIService.getPriceDrops();
-        call.enqueue(new Callback<PriceDrops>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<PriceDrops> call, @NonNull Response<PriceDrops> response) {
                 if (response.isSuccessful()) {
                     PriceDrops priceDrops = response.body();
-                    products = priceDrops.getProducts();
+                    products = Objects.requireNonNull(priceDrops).getProducts();
                     homeAdapter.setProducts(products);
                 }
             }
@@ -107,12 +103,12 @@ public class HomeFragment extends Fragment {
 
     private void getNewProducts() {
         Call<PriceDrops> call = mercadonaAPIService.getNewArrivals();
-        call.enqueue(new Callback<PriceDrops>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<PriceDrops> call, @NonNull Response<PriceDrops> response) {
                 if (response.isSuccessful()) {
                     PriceDrops priceDrops = response.body();
-                    products = priceDrops.getProducts();
+                    products = Objects.requireNonNull(priceDrops).getProducts();
                     homeAdapter.setProducts(products);
                 }
             }

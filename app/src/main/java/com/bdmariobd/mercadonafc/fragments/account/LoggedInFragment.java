@@ -21,6 +21,7 @@ import com.bdmariobd.mercadonafc.activities.product_detail.Review;
 import com.bdmariobd.mercadonafc.activities.product_detail.ReviewAdapter;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
+import java.util.Objects;
 
 public class LoggedInFragment extends Fragment {
 
@@ -85,7 +86,7 @@ public class LoggedInFragment extends Fragment {
                     titleReviews.setText(titleReviews.getText() + " (" + reviews.size() + ")");
                 }
             } else {
-                Log.e("ERRORAccount", task.getException().getMessage());
+                Log.e("ERRORAccount", Objects.requireNonNull(Objects.requireNonNull(task.getException()).getMessage()));
             }
         });
     }

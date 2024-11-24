@@ -2,9 +2,10 @@ package com.bdmariobd.mercadonafc;
 
 import android.net.Uri;
 
-import com.bdmariobd.mercadonafc.integration.ShoppingCartRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class MercadonaCFApplication extends android.app.Application {
 
@@ -26,15 +27,15 @@ public class MercadonaCFApplication extends android.app.Application {
     }
 
     public String getName() {
-        return this.isAutenticated() ? mAuth.getCurrentUser().getDisplayName() : getResources().getString(R.string.user_not_existing);
+        return this.isAutenticated() ? Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName() : getResources().getString(R.string.user_not_existing);
     }
 
     public Uri getPhotoUrl() {
-        return this.isAutenticated() ? mAuth.getCurrentUser().getPhotoUrl() : null;
+        return this.isAutenticated() ? Objects.requireNonNull(mAuth.getCurrentUser()).getPhotoUrl() : null;
     }
 
     public String getUserId() {
-        return this.isAutenticated() ? mAuth.getCurrentUser().getUid() : null;
+        return this.isAutenticated() ? Objects.requireNonNull(mAuth.getCurrentUser()).getUid() : null;
     }
 
 

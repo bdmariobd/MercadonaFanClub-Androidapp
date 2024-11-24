@@ -21,13 +21,13 @@ import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
 import com.bdmariobd.mercadonafc.dialogs.RatingDialog;
 import com.bdmariobd.mercadonafc.models.Photo;
 import com.bdmariobd.mercadonafc.models.Product;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,10 +38,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductActivity extends AppCompatActivity {
     RecyclerView carouselRecyclerView, reviewRecyclerView;
     ReviewAdapter reviewAdapter;
-    private MercadonaAPIService service;
     private Product product;
     private TextView productTitle, productInfo, productReviews;
-    private RatingBar ratingBar;
     private FirebaseFirestore db;
 
     @Override
@@ -64,9 +62,9 @@ public class ProductActivity extends AppCompatActivity {
         reviewAdapter = new ReviewAdapter();
         reviewRecyclerView.setAdapter(reviewAdapter);
 
-        ratingBar = findViewById(R.id.ratingBar);
+        RatingBar ratingBar1 = findViewById(R.id.ratingBar);
 
-        ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> this.showDialog(product, rating));
+        ratingBar1.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> this.showDialog(product, rating));
 
         retrieveProductReviews(product.getId());
 
@@ -75,7 +73,7 @@ public class ProductActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        service = retrofit.create(MercadonaAPIService.class);
+        MercadonaAPIService service = retrofit.create(MercadonaAPIService.class);
         Call<Product> call = service.getProductById(product.getId());
 
         ImageAdapter adapter = new ImageAdapter(ProductActivity.this, new ArrayList<>());
@@ -84,11 +82,11 @@ public class ProductActivity extends AppCompatActivity {
                 .putExtra("image", path), ActivityOptions.makeSceneTransitionAnimation(ProductActivity.this, imageView, "image").toBundle())
         );
 
-        call.enqueue(new Callback<Product>() {
+        call.enqueue(new Callback<>() {
                          @Override
                          public void onResponse(@NonNull Call<Product> call, @NonNull Response<Product> response) {
                              product = response.body();
-                             List<Photo> arrayList = product.getPhotos();
+                             List<Photo> arrayList = Objects.requireNonNull(product).getPhotos();
                              adapter.setPhotoList(arrayList);
                              productTitle = findViewById(R.id.productTitle);
                              productInfo = findViewById(R.id.productInfo);
@@ -146,7 +144,7 @@ public class ProductActivity extends AppCompatActivity {
                             productReviews.setText(getResources().getString(R.string.no_reviews));
                         } else {
                             productReviews.setText(
-                                    +round(averageRating * 10.0) / 10.0
+                                    round(averageRating * 10.0) / 10.0
                                             + "(" + totalReviews + " "
                                             + getResources().getString(R.string.totalReviews)
                                             + ")");

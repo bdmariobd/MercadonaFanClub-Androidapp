@@ -20,6 +20,7 @@ import com.bdmariobd.mercadonafc.models.Product;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import retrofit2.Call;
@@ -33,8 +34,6 @@ public class ProductsByCategoryFragment extends Fragment {
     private final String categoryId;
     private MercadonaAPIService mercadonaAPIService;
     private HomeAdapter homeAdapter;
-
-    private RecyclerView recyclerView;
 
     public ProductsByCategoryFragment(String categoryId) {
         this.categoryId = categoryId;
@@ -60,19 +59,19 @@ public class ProductsByCategoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.rvSearchListProducts);
+        RecyclerView recyclerView = view.findViewById(R.id.rvSearchListProducts);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(homeAdapter);
     }
 
     private void getProducts() {
         Call<CategoryProducts> call = mercadonaAPIService.getCategoryById(categoryId);
-        call.enqueue(new Callback<CategoryProducts>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<CategoryProducts> call, @NonNull Response<CategoryProducts> response) {
                 if (response.isSuccessful()) {
                     CategoryProducts categoryProducts = response.body();
-                    List<Product> products = categoryProducts.getCategories().stream().map(
+                    List<Product> products = Objects.requireNonNull(categoryProducts).getCategories().stream().map(
                             CategoryInternal::getProducts).flatMap(
                             Collection::stream).collect(Collectors.toList());
                     homeAdapter.setProducts(products);

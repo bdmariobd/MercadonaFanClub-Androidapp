@@ -26,6 +26,7 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScanner;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class RatingDialog extends DialogFragment {
@@ -62,7 +63,7 @@ public class RatingDialog extends DialogFragment {
     public AppCompatDialog onCreateDialog(Bundle savedInstanceState) {
         final ProductActivity productActivity = (ProductActivity) requireActivity();
         application = (MercadonaCFApplication) productActivity.getApplication();
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
         View DialogView = inflater.inflate(R.layout.fragment_rating, null);
         this.onViewCreated(DialogView, savedInstanceState);
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(productActivity);
@@ -104,13 +105,13 @@ public class RatingDialog extends DialogFragment {
             rbVerified.setEnabled(false);
             return;
         }
-        scanner = GmsBarcodeScanning.getClient(this.getContext(), options);
+        scanner = GmsBarcodeScanning.getClient(Objects.requireNonNull(this.getContext()), options);
         btnScanBarcode.setOnClickListener(this::onScanBarcodeClick);
 
     }
 
     private Review getReview() {
-        String review = reviewEditText.getEditText().getText().toString();
+        String review = Objects.requireNonNull(reviewEditText.getEditText()).getText().toString();
         String username = application.getName();
         Float rating = ratingBar.getRating();
         UUID uuid = UUID.randomUUID();
@@ -123,7 +124,7 @@ public class RatingDialog extends DialogFragment {
                 .addOnSuccessListener(
                         barcode -> {
                             String rawValue = barcode.getRawValue();
-                            if (rawValue.equals(product.getEan())) {
+                            if (Objects.requireNonNull(rawValue).equals(product.getEan())) {
                                 rbVerified.setChecked(true);
                                 isVerified = true;
                             } else {
@@ -135,6 +136,6 @@ public class RatingDialog extends DialogFragment {
                 .addOnCanceledListener(
                         () -> Log.d("Barcode", "cancelled"))
                 .addOnFailureListener(
-                        e -> Log.d("Barcode", e.getMessage()));
+                        e -> Log.d("Barcode", Objects.requireNonNull(e.getMessage())));
     }
 }

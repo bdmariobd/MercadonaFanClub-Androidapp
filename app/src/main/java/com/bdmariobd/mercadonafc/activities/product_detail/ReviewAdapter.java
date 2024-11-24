@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdmariobd.mercadonafc.R;
-import com.bdmariobd.mercadonafc.api.MercadonaAPIService;
 import com.bdmariobd.mercadonafc.models.Product;
 import com.bdmariobd.mercadonafc.utils.DateConverter;
 import com.google.gson.Gson;

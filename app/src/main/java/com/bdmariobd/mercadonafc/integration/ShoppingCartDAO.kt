@@ -2,7 +2,6 @@ package com.bdmariobd.mercadonafc.integration
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.bdmariobd.mercadonafc.integration.ShoppingCartEntity
 
 @Dao
 interface ShoppingCartDAO {

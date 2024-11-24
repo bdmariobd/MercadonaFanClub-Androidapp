@@ -1,6 +1,5 @@
 package com.bdmariobd.mercadonafc.integration
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.bdmariobd.mercadonafc.models.Product
