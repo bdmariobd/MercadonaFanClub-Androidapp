@@ -2,13 +2,13 @@ package com.bdmariobd.mercadonafc;
 
 import android.net.Uri;
 
+import com.bdmariobd.mercadonafc.integration.ShoppingCartRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MercadonaCFApplication extends android.app.Application {
 
     private FirebaseAuth mAuth;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,4 +36,8 @@ public class MercadonaCFApplication extends android.app.Application {
     public String getUserId() {
         return this.isAutenticated() ? mAuth.getCurrentUser().getUid() : null;
     }
+
+
+
+
 }

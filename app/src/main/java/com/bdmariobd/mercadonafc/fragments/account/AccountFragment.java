@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bdmariobd.mercadonafc.MercadonaCFApplication;
 import com.bdmariobd.mercadonafc.R;
-import com.bdmariobd.mercadonafc.activities.shoppingCart.ShoppingCart;
+import com.bdmariobd.mercadonafc.activities.shoppingCart.ShoppingCartActivity;
 
 public class AccountFragment extends Fragment {
 
@@ -37,7 +37,7 @@ public class AccountFragment extends Fragment {
     }
 
     void onClickShoppingCartButton() {
-        Intent intent = new Intent(getActivity(), ShoppingCart.class);
+        Intent intent = new Intent(getActivity(), ShoppingCartActivity.class);
         startActivity(intent);
     }
 
